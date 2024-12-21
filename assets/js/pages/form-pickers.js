@@ -1,0 +1,1 @@
+!function(o){"use strict";function r(){}r.prototype.init=function(){o("#default-colorpicker").colorpicker({format:"hex"}),o("#rgba-colorpicker").colorpicker(),o("#component-colorpicker").colorpicker({format:null})},o.FormPickers=new r,o.FormPickers.Constructor=r}(window.jQuery),function(){"use strict";window.jQuery.FormPickers.init()}();

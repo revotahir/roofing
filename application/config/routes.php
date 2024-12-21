@@ -49,6 +49,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+$route['login-submit-data']='welcome/loginData';
+//Dashboard
+$route['dashboard']='welcome/Dashboard';
+
+//manager module admin side 
+$route['add-new-manager']='welcome/addNewManager';
+$route['add-manager-data']='welcome/addNewManagerData';
+$route['manager-list']='welcome/managerList';
+$route['delete-manger/:any']='welcome/deletManager';
+$route['edit-manager/:any']='welcome/editManager';
+$route['edit-manager-data/:any']='welcome/editManagerData';
+//client module admin side 
+$route['add-new-client']='welcome/addNewClient';
+$route['add-client-data']='welcome/addNewClientData';
+$route['client-list']='welcome/ClientList';
+$route['delete-client/:any']='welcome/dltClient';
+$route['edit-client/:any']='welcome/EditClient';
+$route['edit-client-data/:any']='welcome/EditClientData';
+
+//client auth and passsetup
+$route['setup-password']='welcome/newClientPassSetup';
+$route['new-password-data/:any']='welcome/newClientPassSetupData';
+
+
+$route['logout'] = 'welcome/Logout';
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
