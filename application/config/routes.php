@@ -72,6 +72,37 @@ $route['edit-client-data/:any']='welcome/EditClientData';
 $route['setup-password']='welcome/newClientPassSetup';
 $route['new-password-data/:any']='welcome/newClientPassSetupData';
 
+//manage jobs module 
+$route['add-new-job']='welcome/addNewJob';
+$route['add-new-job-data']='welcome/addNewJobData';
+$route['job-list']='welcome/jobList';
+$route['edit-job/:any']='welcome/jobEditView';
+$route['update-job-data/:any']='welcome/jobEditData';
+$route['delete-job/:any']='welcome/DeletJob';
+//-- admin job view
+$route['admin-view-job/:any']='welcome/adminJobView';
+$route['mark-sign-on-complete/:any']='welcome/signOnComplete';
+//----admin job view material delivery
+$route['add-material-delivery-data/:any']='welcome/materialDeliveryData';
+//----admin installation images upload
+$route['add-installation-imgs-data/:any']='welcome/installationImgUpload';
+//----admin manager review
+$route['add-manager-review-date-data/:any']='welcome/managerfainalReviewDate';
+//----admin mark job close
+$route['mark-job-close-complete/:any']='welcome/managerMarkJobClose';
+
+
+//client dashboard
+$route['client-dashboard']='client/clientDashboard';
+$route['client-view-job/:any']='client/clientJobView';
+//--job detail fainancing
+$route['mark-fainancing-will-be-financed-by-us/:any']='client/markFinancingUs';
+$route['insurance-detailed-filled/:any']='client/markFinancingAlreadyFormData';
+//---job additional questions
+$route['additional-question-data/:any']='client/AdditionalQuestions';
+//---job feedback
+$route['client-feed-back/:any']='client/SubmitFeedbackData';
+
 
 $route['logout'] = 'welcome/Logout';
 $route['default_controller'] = 'welcome';

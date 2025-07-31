@@ -79,6 +79,27 @@
                 </ul>
             </div>
         </li>
+        <li class="side-nav-item">
+            <a data-bs-toggle="collapse" href="#sidebarJobs" aria-expanded="false" aria-controls="sidebarJobs" class="side-nav-link">
+                <span class="menu-icon"><i data-lucide="briefcase-business"></i></span>
+                <span class="menu-text"> Jobs </span>
+                <span class="menu-arrow"></span>
+            </a>
+            <div class="collapse" id="sidebarJobs">
+                <ul class="sub-menu">                      
+                    <li class="side-nav-item">
+                        <a href="<?=base_url('add-new-job')?>" class="side-nav-link">
+                            <span class="menu-text">Add New Job</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="<?=base_url('job-list')?>" class="side-nav-link">
+                            <span class="menu-text">Manage Job</span>
+                        </a>
+                    </li>                          
+                </ul>
+            </div>
+        </li>
 
     </ul>
 
