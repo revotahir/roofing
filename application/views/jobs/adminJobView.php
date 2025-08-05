@@ -117,7 +117,13 @@
                                             <strong> Work Scope: </strong> <?= $jobDetail[0]['workScope'] ?><br>
                                             <strong> Additional Information: </strong> <?= $jobDetail[0]['addInformation'] ?><br><br>
                                         </p>
-                                        <?php
+
+                                        <!-- form here  -->
+
+
+
+
+                                        <!-- <?php
                                         if ($jobStatus[0]['initialVisit'] != 2) {
                                         ?>
                                             <a href="<?= base_url('mark-sign-on-complete/') . $jobDetail[0]['jobID'] ?>" class=" btn btn-primary" style="float: none;"><i class="mdi mdi-file-check-outline"> Sign On Complete</i> </a>
@@ -130,7 +136,7 @@
                                             </p>
                                         <?php
                                         }
-                                        ?>
+                                        ?> -->
                                     </div>
                                     <div class="tab-pane show " id="finance">
                                         <p class="mb-0">
