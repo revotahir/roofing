@@ -711,6 +711,296 @@
                                         <!-- form end here  -->
 
 
+                                        <!-- new form start here -->
+                                        <div class="col-lg-12">
+                                            <div class="card-body pt-2">
+                                                <form class="form-horizontal parsley-examples" method="post"
+                                                    action="<?=base_url('add-manager-data')?>">
+
+
+                                                    <h5 class="header-title">Customer Details:</h5>
+
+                                                    <div class="form-group">
+                                                        <label>Customer Name:</label>
+                                                        <input type="text" class="form-control" name="cCustName"
+                                                            id="cCustName" required placeholder="Customer Name" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Approval Presented By:</label>
+                                                        <input type="text" class="form-control" name="cAppPres"
+                                                            id="cAppPres" required
+                                                            placeholder="Approval Presented By" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Completion Date:</label>
+                                                        <input type="date" class="form-control" name="cCompDate"
+                                                            id="cCompDate" required placeholder="Completion Date" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Address:</label>
+                                                        <input type="text" class="form-control" name="cAddrs"
+                                                            id="cAddrs" required placeholder="Address" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>City:</label>
+                                                        <input type="text" class="form-control" name="cCity" id="cCity"
+                                                            required placeholder="City" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>State:</label>
+                                                        <input type="text" class="form-control" name="cState"
+                                                            id="cState" required placeholder="State" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Zip:</label>
+                                                        <input type="number" class="form-control" name="cZip" id="cZip"
+                                                            required placeholder="Zip" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Home Phone:</label>
+                                                        <input type="tel" class="form-control" name="cPhone" id="cPhone"
+                                                            required placeholder="Home Phone" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Cell Phone:</label>
+                                                        <input type="tel" class="form-control" name="cCell" id="cCell"
+                                                            required placeholder="Cell Phone" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>E-Mail</label>
+                                                        <div>
+                                                            <input type="email" name="cEmail" id="cEmail"
+                                                                class="form-control" required parsley-type="email"
+                                                                placeholder="Enter a valid e-mail" />
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <h5 class="header-title">Customer Approval:</h5>
+                                                    <p>The work performed under the Contract Documents for the
+                                                        completed project, has been reviewed & found to be complete.
+                                                        Further-
+                                                        more, I agree as the homeowner, the work described in the
+                                                        original contract, the work described in all change order
+                                                        documents & any
+                                                        additional work performed by Contractor on these premises has
+                                                        been completed to satisfaction. Furthermore, l, the homeowner,
+                                                        terminate all further obligations of Contractor in the signed
+                                                        contract and any other subsequent documents.</p>
+                                                    <p>An inspection of any and all items pertaining to the project has
+                                                        been completed and l, the homeowner, accept the project as-is.
+                                                        As the homeowner, I understand from now on that I am unable to
+                                                        make a claim against Contractor for overlooking any item that
+                                                        was not brought to the attention of Contractor during the
+                                                        inspection or final walk-through.</p>
+                                                    <!-- 1st Customer Signature -->
+                                                    <div class="form-group mt-4">
+                                                        <label>Customer Signature</label>
+                                                        <div
+                                                            style="border: 1px solid #ddd; border-radius: 4px; background: #f8f8f8;">
+                                                            <canvas id="signature-pad-55" class="signature-pad"
+                                                                style="width: 100%; height: 200px; touch-action: none;"></canvas>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <button type="button"
+                                                                class="btn btn-secondary btn-sm clear-signature"
+                                                                data-pad="55">Clear Signature</button>
+                                                        </div>
+                                                        <input type="hidden" id="signature-data-55" name="signature_55">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Date:</label>
+                                                        <input type="date" class="form-control" name="cDate55"
+                                                            id="cDate55" required />
+                                                    </div>
+
+                                                    <!-- Insurance Company Signature -->
+                                                    <div class="form-group mt-4">
+                                                        <label>Insurance Company</label>
+                                                        <div
+                                                            style="border: 1px solid #ddd; border-radius: 4px; background: #f8f8f8;">
+                                                            <canvas id="signature-pad-56" class="signature-pad"
+                                                                style="width: 100%; height: 200px; touch-action: none;"></canvas>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <button type="button"
+                                                                class="btn btn-secondary btn-sm clear-signature"
+                                                                data-pad="56">Clear Signature</button>
+                                                        </div>
+                                                        <input type="hidden" id="signature-data-56" name="signature_56">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Claim #:</label>
+                                                        <input type="text" class="form-control" name="cClaim"
+                                                            id="cClaim" required />
+                                                    </div>
+
+
+
+                                                    <h5 class="header-title">Warranty:</h5>
+                                                    <p>l, the homeowner, understand that the duration of all implied
+                                                        warranties has been limited to FIVE YEARS from the date of final
+                                                        payment or the date of completion, whichever comes first. I also
+                                                        understand that no warranties are being made by Contractor,
+                                                        except that materials and equipment furnished under the Contract
+                                                        Documents will be of good quality & new, unless otherwise
+                                                        required or permitted by the Contract Documents, that the work
+                                                        will be free from defects not inherent in the quality required
+                                                        or
+                                                        permitted, and that the work will conform with the requirement
+                                                        of
+                                                        the Contract Documents. Accepting the Limited Warranty, the
+                                                        buyer will not have the right to recover or receive compensation
+                                                        for any incidental, consequential, secondary, punitive or
+                                                        special
+                                                        damages nor any costs or attorney's fees.
+                                                        Contractor also warrants to the homeowner that all construction
+                                                        and related services provided were performed in a good and
+                                                        workmanlike manner, by workers who are appropriately trained
+                                                        and experienced in the work being performed, and in accordance
+                                                        with all requirements of the contract documents, industry
+                                                        standards for projects of similar type and quality. If labor
+                                                        shall
+                                                        prove to be defective within FIVE YEARS of the date of
+                                                        completion, contractor will make repairs at its own costs and
+                                                        expense. This warranty shall not apply to damage or loss
+                                                        resulting
+                                                        from fire, tornado, windstorm, snowload, flood, explosion,
+                                                        misuse,
+                                                        customer negligence, the customers failure to perform routine
+                                                        cleaning, maintenance & tasks required for protecting projects
+                                                        exposed to the outdoor elements, alterations made by the
+                                                        customer, or any and all conditions beyond the control of or not
+                                                        caused by Contractor. If during the warranty period, installed
+                                                        or
+                                                        provided materials are deemed to have a manufacturer defect, the
+                                                        labor to remove & replace the defective product will be billed &
+                                                        charged at the expense of the customer, not Contractor.</p>
+                                                    <!-- 1st Customer Signature -->
+                                                    <div class="form-group mt-4">
+                                                        <label>Customer Signature</label>
+                                                        <div
+                                                            style="border: 1px solid #ddd; border-radius: 4px; background: #f8f8f8;">
+                                                            <canvas id="signature-pad-warn" class="signature-pad"
+                                                                style="width: 100%; height: 200px; touch-action: none;"></canvas>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <button type="button"
+                                                                class="btn btn-secondary btn-sm clear-signature"
+                                                                data-pad="warn">Clear Signature</button>
+                                                        </div>
+                                                        <input type="hidden" id="signature-data-warn"
+                                                            name="signature_warn">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Date:</label>
+                                                        <input type="date" class="form-control" name="cDatewarn"
+                                                            id="cDatewarn" required />
+                                                    </div>
+
+
+
+
+                                                    <h5 class="header-title mt-2">Release of Lien Upon Final Payment:
+                                                    </h5>
+                                                    <p>Contractor has been paid-in-full and all payments and
+                                                        obligations by the homeowner have been satisfied.
+                                                        Furthermore Contractor releases all liens or intent to lien
+                                                        documents upon final payment.</p>
+                                                    <div class="form-group">
+                                                        <label>Original Contract Total $:</label>
+                                                        <input type="number" class="form-control" name="ContTotal"
+                                                            id="ContTotal" required
+                                                            placeholder="Original Contract Total" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Change Order(s) Total $: </label><strong> +/-</strong>
+                                                        <input type="number" class="form-control" name="ContTotal"
+                                                            id="ContTotal" required
+                                                            placeholder="Change Order(s) Total" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Change Order(s) Total $: </label><strong> +/-</strong>
+                                                        <input type="number" class="form-control" name="ContTotal"
+                                                            id="ContTotal" required
+                                                            placeholder="Change Order(s) Total" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Project Total $: </label><strong> =</strong>
+                                                        <input type="number" class="form-control" name="ProjTotal"
+                                                            id="ProjTotal" required placeholder="Project Total" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Payment #1 - Down Payment Amount $: </label><strong>
+                                                            -</strong>
+                                                        <input type="number" class="form-control" name="PaymentDown"
+                                                            id="PaymentDown" required
+                                                            placeholder="Payment #1 - Down Payment Amount" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Payment #2 $: </label><strong>
+                                                            -</strong>
+                                                        <input type="number" class="form-control" name="PaymentDown2"
+                                                            id="PaymentDown2" required placeholder="Payment #2" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Final Payment Amount Due $: </label><strong>
+                                                            =</strong>
+                                                        <input type="number" class="form-control" name="FinalPay"
+                                                            id="FinalPay" required
+                                                            placeholder="Final Payment Amount Due" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Check Number: </label>
+                                                        <input type="number" class="form-control" name="CheckNumber"
+                                                            id="CheckNumber" required placeholder="Check Number" />
+                                                    </div>
+                                                    <!-- 1st Customer Signature -->
+                                                    <div class="form-group mt-4">
+                                                        <label>Customer Signature</label>
+                                                        <div
+                                                            style="border: 1px solid #ddd; border-radius: 4px; background: #f8f8f8;">
+                                                            <canvas id="signature-pad-end" class="signature-pad"
+                                                                style="width: 100%; height: 200px; touch-action: none;"></canvas>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <button type="button"
+                                                                class="btn btn-secondary btn-sm clear-signature"
+                                                                data-pad="end">Clear Signature</button>
+                                                        </div>
+                                                        <input type="hidden" id="signature-data-end"
+                                                            name="signature_end">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Date:</label>
+                                                        <input type="date" class="form-control" name="cDateend"
+                                                            id="cDateend" required />
+                                                    </div>
+
+
+
+
+
+
+
+
+
+
+                                                    <div class="form-group mt-2">
+                                                        <div>
+                                                            <button type="submit"
+                                                                class="btn btn-primary waves-effect waves-light me-1">
+                                                                Submit
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <!-- new form end here -->
+
+
 
 
 
@@ -811,7 +1101,8 @@
                                                 <label>Upload Images (Max Upload 10)</label>
                                                 <input type="file" multiple class="form-control" name="imgs[]" id="imgs"
                                                     onchange="validateFiles()" required placeholder="Scheduled date" />
-                                                <p id="errorMessage" style="color: red; display: none;">You can only
+                                                <p id="errorMessage" style="color: red; display: none;">You can
+                                                    only
                                                     upload a maximum of 10 files.</p>
                                             </div>
                                             <div class="form-group">
@@ -1026,7 +1317,8 @@
                                                     </div>
 
                                                     <div class="col-sm-6">
-                                                        <h4 class="header-title">Client additional question details</h4>
+                                                        <h4 class="header-title">Client additional question
+                                                            details</h4>
                                                         <strong>Message: </strong>
                                                         <?php 
                                                         if($managerReview){
@@ -1063,10 +1355,12 @@
                                         } else {
                                         ?>
                                         <a href="" class=" btn btn-primary disabled" style="float: none;"><i
-                                                class="mdi mdi-file-check-outline"> Fainal Document sign Completed</i>
+                                                class="mdi mdi-file-check-outline"> Fainal Document sign
+                                                Completed</i>
                                         </a>
                                         <p>
-                                            <strong>Job Close Date: </strong><?= $jobStatus[0]['jobCloseDate'] ?>
+                                            <strong>Job Close Date:
+                                            </strong><?= $jobStatus[0]['jobCloseDate'] ?>
                                         </p>
                                         <?php
                                         }
@@ -1132,7 +1426,8 @@
 
         // Find all signature pad canvases
         document.querySelectorAll('.signature-pad').forEach((canvas, index) => {
-            const padId = canvas.id.split('-')[2]; // Get the number from id (signature-pad-1 -> 1)
+            const padId = canvas.id.split('-')[
+                2]; // Get the number from id (signature-pad-1 -> 1)
             signaturePads[padId] = new SignaturePad(canvas);
 
             // Adjust canvas size and scaling for better quality
