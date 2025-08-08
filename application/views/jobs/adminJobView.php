@@ -22,6 +22,26 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/toastr/toastr.min.css">
     <!-- Theme Config Js -->
     <script src="<?= base_url() ?>assets/js/config.js"></script>
+
+    <style>
+    .payment-methods {
+        border-right: 1px solid #eee;
+        padding-right: 20px;
+    }
+
+    .card {
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-control {
+        border-radius: 4px;
+    }
+
+    .header-title {
+        color: #2c3e50;
+        font-weight: 600;
+    }
+    </style>
 </head>
 
 <body>
@@ -131,336 +151,596 @@
 
 
                                         <div class="col-lg-12">
-                                            <div class="card-header">
+                                            <div class="card-header p-0">
                                                 <h5 class="header-title">Customer Details</h5>
                                             </div>
-                                            <div class="card-body pt-2">
+                                            <div class="card-body pt-2 p-0">
                                                 <form class="form-horizontal parsley-examples" method="post"
                                                     action="<?=base_url('add-manager-data')?>">
-                                                    <div class="form-group">
-                                                        <label>Client Name:</label>
-                                                        <input type="text" class="form-control" name="cName" id="cName"
-                                                            required placeholder="Client Name" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Company Representative Name:</label>
-                                                        <input type="text" class="form-control" name="cRName"
-                                                            id="cRName" required
-                                                            placeholder="Company Representative Name" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Date:</label>
-                                                        <input type="date" class="form-control" name="cDate" id="cDate"
-                                                            required placeholder="Date" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Address:</label>
-                                                        <input type="text" class="form-control" name="cAddrs"
-                                                            id="cAddrs" required placeholder="Address" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>City:</label>
-                                                        <input type="text" class="form-control" name="cCity" id="cCity"
-                                                            required placeholder="City" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>State:</label>
-                                                        <input type="text" class="form-control" name="cState"
-                                                            id="cState" required placeholder="State" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Zip:</label>
-                                                        <input type="number" class="form-control" name="cZip" id="cZip"
-                                                            required placeholder="Zip" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Home Phone:</label>
-                                                        <input type="tel" class="form-control" name="cPhone" id="cPhone"
-                                                            required placeholder="Home Phone" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Cell Phone:</label>
-                                                        <input type="tel" class="form-control" name="cCell" id="cCell"
-                                                            required placeholder="Cell Phone" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>E-Mail</label>
-                                                        <div>
-                                                            <input type="email" name="cEmail" id="cEmail"
-                                                                class="form-control" required parsley-type="email"
-                                                                placeholder="Enter a valid e-mail" />
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Client Name:</label>
+                                                                <input type="text" class="form-control" name="cName"
+                                                                    id="cName" required placeholder="Client Name" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Company Representative Name:</label>
+                                                                <input type="text" class="form-control" name="cRName"
+                                                                    id="cRName" required
+                                                                    placeholder="Company Representative Name" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Date:</label>
+                                                                <input type="date" class="form-control" name="cDate"
+                                                                    id="cDate" required placeholder="Date" />
+                                                            </div>
                                                         </div>
                                                     </div>
 
+                                                    <div class="row">
+                                                        <!-- Address (takes more space) -->
+                                                        <div class="col-md-4 col-sm-12">
+                                                            <div class="form-group">
+                                                                <label>Address:</label>
+                                                                <input type="text" class="form-control" name="cAddrs"
+                                                                    id="cAddrs" required placeholder="Address" />
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- City -->
+                                                        <div class="col-md-4 col-sm-4">
+                                                            <div class="form-group">
+                                                                <label>City:</label>
+                                                                <input type="text" class="form-control" name="cCity"
+                                                                    id="cCity" required placeholder="City" />
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- State -->
+                                                        <div class="col-md-2 col-sm-4">
+                                                            <div class="form-group">
+                                                                <label>State:</label>
+                                                                <input type="text" class="form-control" name="cState"
+                                                                    id="cState" required placeholder="State" />
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Zip -->
+                                                        <div class="col-md-2 col-sm-4">
+                                                            <div class="form-group">
+                                                                <label>Zip:</label>
+                                                                <input type="number" class="form-control" name="cZip"
+                                                                    id="cZip" required placeholder="Zip" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <!-- Home Phone -->
+                                                        <div class="col-lg-4 col-md-4 col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Home Phone:</label>
+                                                                <input type="tel" class="form-control" name="cPhone"
+                                                                    id="cPhone" required placeholder="Home Phone" />
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Cell Phone -->
+                                                        <div class="col-lg-4 col-md-4 col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Cell Phone:</label>
+                                                                <input type="tel" class="form-control" name="cCell"
+                                                                    id="cCell" required placeholder="Cell Phone" />
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Email -->
+                                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                                            <div class="form-group">
+                                                                <label>E-Mail</label>
+                                                                <input type="email" name="cEmail" id="cEmail"
+                                                                    class="form-control" required parsley-type="email"
+                                                                    placeholder="Enter a valid e-mail" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
                                                     <h5 class="header-title">Roofing to be Completed:</h5>
 
-                                                    <div class="form-group">
-                                                        <label>House Square:</label>
-                                                        <input type="text" class="form-control" name="cHouseSq"
-                                                            id="cHouseSq" required placeholder="House Square" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Attached Garage Square:</label>
-                                                        <input type="text" class="form-control" name="cAttSq"
-                                                            id="cAttSq" required placeholder="Attached Garage" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Detached Garage Square:</label>
-                                                        <input type="text" class="form-control" name="cDetSq"
-                                                            id="cDetSq" required placeholder="Detached Garage" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Chimney(s) Square:</label>
-                                                        <input type="text" class="form-control" name="cChiSq"
-                                                            id="cChiSq" required placeholder="Chimney" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Other:</label>
-                                                        <input type="text" class="form-control" name="cOthVen"
-                                                            id="cOthVen" required placeholder="Other" />
-                                                    </div>
+                                                    <div class="row">
+                                                        <!-- House Square -->
+                                                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label>House Square:</label>
+                                                                <input type="text" class="form-control" name="cHouseSq"
+                                                                    id="cHouseSq" required placeholder="House Square" />
+                                                            </div>
+                                                        </div>
 
+                                                        <!-- Attached Garage Square -->
+                                                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label>Attached Garage Square:</label>
+                                                                <input type="text" class="form-control" name="cAttSq"
+                                                                    id="cAttSq" required
+                                                                    placeholder="Attached Garage" />
+                                                            </div>
+                                                        </div>
 
-                                                    <h5 class="header-title">Flat Roof:</h5>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cYes"
-                                                            id="cYes" />
-                                                        <label>Yes</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cFlaYes"
-                                                            id="cFlaYes" required />
-                                                        <label>No Flat Roof</label>
-                                                    </div>
+                                                        <!-- Detached Garage Square -->
+                                                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label>Detached Garage Square:</label>
+                                                                <input type="text" class="form-control" name="cDetSq"
+                                                                    id="cDetSq" required
+                                                                    placeholder="Detached Garage" />
+                                                            </div>
+                                                        </div>
 
+                                                        <!-- Chimney(s) Square -->
+                                                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label>Chimney(s) Square:</label>
+                                                                <input type="text" class="form-control" name="cChiSq"
+                                                                    id="cChiSq" required placeholder="Chimney" />
+                                                            </div>
+                                                        </div>
 
-
-                                                    <h5 class="header-title">House Type:</h5>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cSingSto"
-                                                            id="cSingSto" required />
-                                                        <label>Single Story</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cTwoSto"
-                                                            id="cTwoSto" required />
-                                                        <label>Two Story</label>
-                                                    </div>
-
-
-
-                                                    <h5 class="header-title">Primary Pitch:</h5>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cSingSto"
-                                                            id="cSingSto" required />
-                                                        <label>4/12 or Less</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cTwoSto"
-                                                            id="cTwoSto" required />
-                                                        <label>6/12 to 8/12</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cTwoSto"
-                                                            id="cTwoSto" required />
-                                                        <label>8/12 or Greater</label>
+                                                        <!-- Other -->
+                                                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <label>Other:</label>
+                                                                <input type="text" class="form-control" name="cOthVen"
+                                                                    id="cOthVen" required placeholder="Other" />
+                                                            </div>
+                                                        </div>
                                                     </div>
 
 
 
 
-                                                    <h5 class="header-title">Existin Ventilation:</h5>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cRidVen"
-                                                            id="cRidVen" required />
-                                                        <label>Ridge Vent</label>
+                                                    <div class="row mb-4">
+                                                        <!-- 1st Section: Flat Roof -->
+                                                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                                                            <div class="card" style="height:auto;">
+                                                                <div class="card-body">
+                                                                    <h5 class="header-title">Flat Roof:</h5>
+                                                                    <div class="form-check mb-2">
+                                                                        <input type="checkbox" class="form-check-input"
+                                                                            name="cYes" id="cYes" />
+                                                                        <label class="form-check-label">Yes</label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                        <input type="checkbox" class="form-check-input"
+                                                                            name="cFlaYes" id="cFlaYes" required />
+                                                                        <label class="form-check-label">No Flat
+                                                                            Roof</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- 2nd Section: House Type -->
+                                                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                                                            <div class="card " style="height:auto;">
+                                                                <div class="card-body">
+                                                                    <h5 class="header-title">House Type:</h5>
+                                                                    <div class="form-check mb-2">
+                                                                        <input type="checkbox" class="form-check-input"
+                                                                            name="cSingSto" id="cSingSto" required />
+                                                                        <label class="form-check-label">Single
+                                                                            Story</label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                        <input type="checkbox" class="form-check-input"
+                                                                            name="cTwoSto" id="cTwoSto" required />
+                                                                        <label class="form-check-label">Two
+                                                                            Story</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- 3rd Section: Primary Pitch -->
+                                                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 ">
+                                                            <div class="card " style="height:auto;">
+                                                                <div class="card-body">
+                                                                    <h5 class="header-title">Primary Pitch:</h5>
+                                                                    <div class="form-check mb-2">
+                                                                        <input type="checkbox" class="form-check-input"
+                                                                            name="cPitch1" id="cPitch1" required />
+                                                                        <label class="form-check-label">4/12 or
+                                                                            Less</label>
+                                                                    </div>
+                                                                    <div class="form-check mb-2">
+                                                                        <input type="checkbox" class="form-check-input"
+                                                                            name="cPitch2" id="cPitch2" required />
+                                                                        <label class="form-check-label">6/12 to
+                                                                            8/12</label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                        <input type="checkbox" class="form-check-input"
+                                                                            name="cPitch3" id="cPitch3" required />
+                                                                        <label class="form-check-label">8/12 or
+                                                                            Greater</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- 4th Section: Existing Ventilation -->
+                                                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                                                            <div class="card " style="height:auto;">
+                                                                <div class="card-body">
+                                                                    <h5 class="header-title">Existing Ventilation:</h5>
+                                                                    <div class="form-check mb-2">
+                                                                        <input type="checkbox" class="form-check-input"
+                                                                            name="cRidVen" id="cRidVen" required />
+                                                                        <label class="form-check-label">Ridge
+                                                                            Vent</label>
+                                                                    </div>
+                                                                    <div class="form-check mb-2">
+                                                                        <input type="checkbox" class="form-check-input"
+                                                                            name="cSoffVen" id="cSoffVen" required />
+                                                                        <label class="form-check-label">Soffit
+                                                                            Vent</label>
+                                                                    </div>
+                                                                    <div class="form-check mb-2">
+                                                                        <input type="checkbox" class="form-check-input"
+                                                                            name="cLouVen" id="cLouVen" required />
+                                                                        <label class="form-check-label">Louver /
+                                                                            Can</label>
+                                                                    </div>
+                                                                    <div class="form-check mb-2">
+                                                                        <input type="checkbox" class="form-check-input"
+                                                                            name="cNoVen" id="cNoVen" required />
+                                                                        <label class="form-check-label">No
+                                                                            Ventilation</label>
+                                                                    </div>
+                                                                    <div class="form-check mb-3">
+                                                                        <input type="checkbox" class="form-check-input"
+                                                                            name="cTurVen" id="cTurVen" required />
+                                                                        <label class="form-check-label">Turbine</label>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Other</label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="cOthVen" id="cOthVen" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cSoffVen"
-                                                            id="cSoffVen" required />
-                                                        <label>Soffit Vent</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cLouVen"
-                                                            id="cLouVen" required />
-                                                        <label>Louver / Can</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cNoVen"
-                                                            id="cNoVen" required />
-                                                        <label>No Ventilationn</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cTurVen"
-                                                            id="cTurVen" required />
-                                                        <label>Turbine</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Other</label>
-                                                        <input type="text" class="form-control" name="cOthVen"
-                                                            id="cOthVen" required />
+
+
+                                                    <div class="row">
+                                                        <!-- Replacement Ventilation Section -->
+                                                        <div class="col-12 mb-4">
+                                                            <div class="card">
+                                                                <div class="card-body">
+                                                                    <h5 class="header-title">Replacement Ventilation:
+                                                                    </h5>
+
+                                                                    <div class="row">
+                                                                        <!-- Checkbox Options Column -->
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-check mb-3">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    name="cRepc" id="cRepc" />
+                                                                                <label class="form-check-label">Replace
+                                                                                    Existing Ridge Vent</label>
+                                                                            </div>
+
+                                                                            <div class="form-group mb-3">
+                                                                                <label>Cut In New Ridge Vent Approx
+                                                                                    Length:</label>
+                                                                                <div class="input-group">
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        name="cRidg" id="cRidg"
+                                                                                        placeholder="Length" />
+                                                                                    <span
+                                                                                        class="input-group-text">ft</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <!-- Input Fields Column -->
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-check mb-3">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input" name="cSof"
+                                                                                    id="cSof" />
+                                                                                <label class="form-check-label">Soffit
+                                                                                    Vent</label>
+                                                                            </div>
+
+
+                                                                            <div class="form-group">
+                                                                                <label>Replace Can(s) Qty:</label>
+                                                                                <input type="number"
+                                                                                    class="form-control" name="cReplc"
+                                                                                    id="cReplc" placeholder="Quantity"
+                                                                                    min="0" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
 
 
-                                                    <h5 class="header-title">Replacement Ventilation:</h5>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cRepc"
-                                                            id="cRepc" required />
-                                                        <label>Replace Existing Ridge Vent</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Cut In New Ridge Vent Approx Length:</label>
-                                                        <input type="text" class="form-control" name="cRidg" id="cRidg"
-                                                            required
-                                                            placeholder="Cut In New Ridge Vent Approx Length" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Replace Can(s) Qty:</label>
-                                                        <input type="text" class="form-control" name="cReplc"
-                                                            id="cReplc" required placeholder="Replace Can(s) Qty" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cSof"
-                                                            id="cSof" required />
-                                                        <label>Soffit Vent</label>
+                                                    <div class="row">
+                                                        <!-- Gutters Section -->
+                                                        <div class="col-lg-6 col-md-12 mb-4">
+                                                            <div class="card">
+                                                                <div class="card-body">
+                                                                    <h5 class="header-title mb-3">Gutters:</h5>
+
+                                                                    <!-- Checkbox Options -->
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-check mb-2">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input" name="cGut"
+                                                                                    id="cGut" />
+                                                                                <label class="form-check-label">House
+                                                                                    Does Not Have Gutters</label>
+                                                                            </div>
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    name="cKeep" id="cKeep" />
+                                                                                <label class="form-check-label">Keep
+                                                                                    Existing</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- New Gutters Installation -->
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-md-12">
+                                                                            <label class="form-label">Install New
+                                                                                Seamless Gutters:</label>
+                                                                            <div class="row">
+                                                                                <div class="col-md-6 mb-2">
+                                                                                    <div class="input-group">
+                                                                                        <input type="number"
+                                                                                            class="form-control"
+                                                                                            name="cLF" id="cLF"
+                                                                                            placeholder="Length"
+                                                                                            min="0" />
+                                                                                        <span
+                                                                                            class="input-group-text">LF</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        name="cGutt" id="cGutt"
+                                                                                        placeholder="Gutter Type" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Color Picker -->
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-md-6">
+                                                                            <label class="form-label">Color</label>
+                                                                            <input type="color"
+                                                                                class="form-control form-control-color"
+                                                                                name="cColor" id="cColor" />
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Quantity Inputs -->
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 mb-2">
+                                                                            <label class="form-label">1-Story Down Spout
+                                                                                Qty:</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="cDown" id="cDown"
+                                                                                placeholder="Qty" min="0" />
+                                                                        </div>
+                                                                        <div class="col-md-6 mb-2">
+                                                                            <label class="form-label">2-Story Down Spout
+                                                                                Qty:</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="cDown-2" id="cDown-2"
+                                                                                placeholder="Qty" min="0" />
+                                                                        </div>
+                                                                        <div class="col-md-6 mb-2">
+                                                                            <label class="form-label">Inside Corner
+                                                                                Qty:</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="cInsCor" id="cInsCor"
+                                                                                placeholder="Qty" min="0" />
+                                                                        </div>
+                                                                        <div class="col-md-6 mb-2">
+                                                                            <label class="form-label">Outside Corner
+                                                                                Qty:</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="cOutCor" id="cOutCor"
+                                                                                placeholder="Qty" min="0" />
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <label class="form-label">Splash Guard
+                                                                                Qty:</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="cSplCor" id="cSplCor"
+                                                                                placeholder="Qty" min="0" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Gutter Guard Section -->
+                                                        <div class="col-lg-6 col-md-12 mb-4">
+                                                            <div class="card">
+                                                                <div class="card-body">
+                                                                    <h5 class="header-title mb-3">Gutter Guard:</h5>
+
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-check mb-3">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    name="cGutGur" id="cGutGur" />
+                                                                                <label class="form-check-label">No
+                                                                                    Gutter Protection Present</label>
+                                                                            </div>
+
+                                                                            <div class="form-check mb-3">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    name="cGutHome" id="cGutHome" />
+                                                                                <label
+                                                                                    class="form-check-label">Homeowner
+                                                                                    to Remove Prior to Install &
+                                                                                    Homeowner to Re-install
+                                                                                    Later</label>
+                                                                            </div>
+
+                                                                            <div class="form-check mb-3">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    name="cGutRem" id="cGutRem" />
+                                                                                <label
+                                                                                    class="form-check-label">Contractor
+                                                                                    to Remove & Haul Away</label>
+                                                                            </div>
+
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    name="cGutNeed" id="cGutNeed" />
+                                                                                <label class="form-check-label">Needs
+                                                                                    New Gutter Protection</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
 
 
 
-                                                    <h5 class="header-title">Gutters:</h5>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cGut"
-                                                            id="cGut" required />
-                                                        <label>House Does Not Have Gutters</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cKeep"
-                                                            id="cKeep" required />
-                                                        <label>Keep Existing</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Install New Seamless Gutters:</label>
-                                                        <input type="text" class="form-control" name="cLF" id="cLF"
-                                                            required placeholder="LF" />
-                                                        <input type="text" class="form-control mt-2" name="cGutt"
-                                                            id="cGutt" required placeholder="Gutters" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Color</label>
-                                                        <input type="color" class="form-control" name="cColor"
-                                                            id="cColor" required placeholder="Color" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>1-Story Down Spout Qty:</label>
-                                                        <input type="text" class="form-control" name="cDown" id="cDown"
-                                                            required placeholder="1-Story Down Spout Qty" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>2-Story Down Spout Qty:</label>
-                                                        <input type="text" class="form-control" name="cDown-2"
-                                                            id="cDown-2" required
-                                                            placeholder="2-Story Down Spout Qty" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Inside Corner Qty:</label>
-                                                        <input type="text" class="form-control" name="cInsCor"
-                                                            id="cInsCor" required placeholder="Inside Corner Qty" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Outside Corner Qty:</label>
-                                                        <input type="text" class="form-control" name="cOutCor"
-                                                            id="cOutCor" required placeholder="Outside Corner Qty" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Splash Guard Qty:</label>
-                                                        <input type="text" class="form-control" name="cSplCor"
-                                                            id="cSplCor" required placeholder="Splash Guard Qty" />
-                                                    </div>
-                                                    <h5 class="header-title">Gutter Guard:</h5>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cGutGur"
-                                                            id="cGutGur" required />
-                                                        <label>No Gutter Protection Present</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cGutHome"
-                                                            id="cGutHome" required />
-                                                        <label>Homeowner to Remove
-                                                            Prior to Install & Homeowner I
-                                                            to Re-lnstall Later</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cGutRem"
-                                                            id="cGutRem" required />
-                                                        <label>Contractor to Remove
-                                                            & Haul Away</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cGutNeed"
-                                                            id="cGutNeed" required />
-                                                        <label>Needs New Gutter Protection</label>
+
+                                                    <div class="row">
+                                                        <!-- 1st Section: Accessory Color Selection -->
+                                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-4">
+                                                            <div class="card h-100">
+                                                                <div class="card-body">
+                                                                    <h5 class="header-title">Accessory Color Selection:
+                                                                    </h5>
+                                                                    <div class="form-group mb-3">
+                                                                        <label>Drip Edge:</label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="cDrip" id="cDrip"
+                                                                            placeholder="Drip Edge" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Can Vents:</label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="cCanVent" id="cCanVent"
+                                                                            placeholder="Can Vents" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- 2nd Section: Fascia/Soffit -->
+                                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-4">
+                                                            <div class="card h-100">
+                                                                <div class="card-body">
+                                                                    <h5 class="header-title">Fascia/Soffit:</h5>
+                                                                    <div class="form-check mb-3">
+                                                                        <input type="checkbox" class="form-check-input"
+                                                                            name="cKeepEx" id="cKeepEx" />
+                                                                        <label class="form-check-label">Keep
+                                                                            Existing</label>
+                                                                    </div>
+                                                                    <div class="form-group mb-3">
+                                                                        <label>Replace LF of Fascia:</label>
+                                                                        <div class="input-group">
+                                                                            <input type="number" class="form-control"
+                                                                                name="cRplcL" id="cRplcL"
+                                                                                placeholder="Length" min="0" />
+                                                                            <span class="input-group-text">LF</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Replace LF of Soffit:</label>
+                                                                        <div class="input-group">
+                                                                            <input type="number" class="form-control"
+                                                                                name="cRplcS" id="cRplcS"
+                                                                                placeholder="Length" min="0" />
+                                                                            <span class="input-group-text">LF</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- 3rd Section: Tearoff Layers -->
+                                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-4">
+                                                            <div class="card h-100">
+                                                                <div class="card-body">
+                                                                    <h5 class="header-title">Tearoff Layers:</h5>
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-6">
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    name="c1Layer" id="c1Layer" />
+                                                                                <label class="form-check-label">1
+                                                                                    Layer</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    name="c2Layer" id="c2Layer" />
+                                                                                <label class="form-check-label">2 Layer
+                                                                                    (See below)</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Layers:</label>
+                                                                        <p class="small text-muted mb-2">Your price is
+                                                                            based on a single layer tearoff. Each
+                                                                            additional layer will be charged extra.</p>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-text">$</span>
+                                                                            <input type="number" class="form-control"
+                                                                                name="cLyrPre" id="cLyrPre"
+                                                                                placeholder="Price per layer" min="0"
+                                                                                step="0.01" />
+                                                                            <span class="input-group-text">per
+                                                                                layer</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
 
-
-
-
-                                                    <h5 class="header-title">Accessory Color Selection:</h5>
-                                                    <div class="form-group">
-                                                        <label>Drip Edge:</label>
-                                                        <input type="text" class="form-control" name="cDrip" id="cDrip"
-                                                            required placeholder="Drip Edge" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Can Vents:</label>
-                                                        <input type="text" class="form-control" name="cCanVent"
-                                                            id="cCanVent" required placeholder="Can Vents" />
-                                                    </div>
-
-
-
-
-                                                    <h5 class="header-title">Fascia/Soffit:</h5>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cKeepEx"
-                                                            id="cKeepEx" required />
-                                                        <label>Keep Existing</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Replace LF of Fascia:</label>
-                                                        <input type="text" class="form-control" name="cRplcL"
-                                                            id="cRplcL" required placeholder="Replace LF of Fascia" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Replace LF of Soffit:</label>
-                                                        <input type="text" class="form-control" name="cRplcS"
-                                                            id="cRplcS" required placeholder="Replace LF of Soffit" />
-                                                    </div>
-
-
-
-
-                                                    <h5 class="header-title">Tearoff Layers:</h5>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="c1Layer"
-                                                            id="c1Layer" required />
-                                                        <label>1 Layer</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="c2Layer"
-                                                            id="c2Layer" required />
-                                                        <label>2 Layer (See below)</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Layers:</label>
-                                                        <span>Your price is based on a single layer tearoff. Each
-                                                            additional layer will be <strong>$ PER LAYER</strong>
-                                                        </span>
-                                                        <input type="text" class="form-control" name="cLyrPre"
-                                                            id="cLyrPre" required placeholder="$ PER LAYER" />
-                                                    </div>
 
 
 
@@ -501,72 +781,120 @@
                                                         id="cNotes" required placeholder="NOTES"></textarea>
 
 
+                                                    <div class="card mt-4">
+                                                        <div class="card-body">
+                                                            <h5 class="header-title mb-4">Payment Details:</h5>
 
-                                                    <h5 class="header-title mt-4">Payment Details:</h5>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cCash"
-                                                            id="cCash" required />
-                                                        <label>Cash</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cPerCash"
-                                                            id="cPerCash" required />
-                                                        <label>Personal Check</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Check #:</label>
-                                                        <input type="number" class="form-control" name="cCheck"
-                                                            id="cCheck" required placeholder="Check Number" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input"
-                                                            name="cCheckRecei" id="cCheckRecei" required />
-                                                        <label>Check Received</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" class="form-check-input" name="cCredit"
-                                                            id="cCredit" required />
-                                                        <label>Credit Card</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Name on Credit Card:</label>
-                                                        <input type="text" class="form-control" name="cCreditName"
-                                                            id="cCreditName" required
-                                                            placeholder="Name on Credit Card" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Card #:</label>
-                                                        <input type="text" class="form-control" name="cCard" id="cCard"
-                                                            required placeholder="Card Number" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Exp. Date:</label>
-                                                        <input type="date" class="form-control" name="cDate" id="cDate"
-                                                            required />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>CVC:</label>
-                                                        <input type="text" class="form-control" name="cCVC" id="cCVC"
-                                                            required placeholder="CVC" />
+                                                            <div class="row">
+                                                                <!-- Payment Method Selection -->
+                                                                <div class="col-md-6 mb-4">
+                                                                    <div class="payment-methods">
+                                                                        <div class="form-check mb-3">
+                                                                            <input type="radio" class="form-check-input"
+                                                                                name="paymentMethod" id="cCash"
+                                                                                required />
+                                                                            <label class="form-check-label">Cash</label>
+                                                                        </div>
+
+                                                                        <div class="form-check mb-3">
+                                                                            <input type="radio" class="form-check-input"
+                                                                                name="paymentMethod" id="cPerCash"
+                                                                                required />
+                                                                            <label class="form-check-label">Personal
+                                                                                Check</label>
+                                                                        </div>
+
+                                                                        <!-- Check Details (shown when Personal Check is selected) -->
+                                                                        <div class="check-details mb-4"
+                                                                            style="display: none;">
+                                                                            <div class="form-group mb-3">
+                                                                                <label>Check #:</label>
+                                                                                <input type="number"
+                                                                                    class="form-control" name="cCheck"
+                                                                                    id="cCheck"
+                                                                                    placeholder="Check Number" />
+                                                                            </div>
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    name="cCheckRecei"
+                                                                                    id="cCheckRecei" />
+                                                                                <label class="form-check-label">Check
+                                                                                    Received</label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-check">
+                                                                            <input type="radio" class="form-check-input"
+                                                                                name="paymentMethod" id="cCredit"
+                                                                                required />
+                                                                            <label class="form-check-label">Credit
+                                                                                Card</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- Credit Card Details (shown when Credit Card is selected) -->
+                                                                <div class="col-md-6 credit-card-details"
+                                                                    style="display: none;">
+                                                                    <div class="form-group mb-3">
+                                                                        <label>Name on Credit Card:</label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="cCreditName" id="cCreditName"
+                                                                            placeholder="Name on Credit Card" />
+                                                                    </div>
+
+                                                                    <div class="form-group mb-3">
+                                                                        <label>Card #:</label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="cCard" id="cCard"
+                                                                            placeholder="Card Number" />
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 form-group mb-3">
+                                                                            <label>Exp. Date:</label>
+                                                                            <input type="month" class="form-control"
+                                                                                name="cDate" id="cDate" />
+                                                                        </div>
+
+                                                                        <div class="col-md-6 form-group mb-3">
+                                                                            <label>CVC:</label>
+                                                                            <input type="password" class="form-control"
+                                                                                name="cCVC" id="cCVC" placeholder="CVC"
+                                                                                maxlength="4" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
-
-
-                                                    <h5 class="header-title mt-4">Installation Details:</h5>
-                                                    <div class="form-group">
-                                                        <label>Estimated Install:</label>
-                                                        <input type="text" class="form-control" name="cEsti" id="cEsti"
-                                                            required placeholder="Estimated Install" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Contractor Contact Name:</label>
-                                                        <input type="text" class="form-control" name="cCont" id="cCont"
-                                                            required placeholder="Contractor Contact Name" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Contact Phone #:</label>
-                                                        <input type="tel" class="form-control" name="cContPhone"
-                                                            id="cContPhone" required placeholder="Contact Phone" />
+                                                    <div class="row mt-4">
+                                                        <h5 class="header-title mb-3">Installation Details:</h5>
+                                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-3">
+                                                            <div class="form-group">
+                                                                <label>Estimated Install:</label>
+                                                                <input type="text" class="form-control" name="cEsti"
+                                                                    id="cEsti" required
+                                                                    placeholder="Estimated Install" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-3">
+                                                            <div class="form-group">
+                                                                <label>Contractor Contact Name:</label>
+                                                                <input type="text" class="form-control" name="cCont"
+                                                                    id="cCont" required placeholder="Contractor Name" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-3">
+                                                            <div class="form-group">
+                                                                <label>Contact Phone #:</label>
+                                                                <input type="tel" class="form-control" name="cContPhone"
+                                                                    id="cContPhone" required
+                                                                    placeholder="Phone Number" />
+                                                            </div>
+                                                        </div>
                                                     </div>
 
 
@@ -602,95 +930,159 @@
                                                         <input type="hidden" id="signature-data-1" name="signature_1">
                                                     </div>
 
-                                                    <h5 class="header-title mt-4">Roofing Contract Customer Approval:
-                                                    </h5>
+                                                    <div class="row mt-4">
+                                                        <h5 class="header-title mb-3">Roofing Contract Customer
+                                                            Approval:</h5>
 
-                                                    <!-- Second Customer Signature -->
-                                                    <div class="form-group mt-4">
-                                                        <label>Customer Signature</label>
-                                                        <div
-                                                            style="border: 1px solid #ddd; border-radius: 4px; background: #f8f8f8;">
-                                                            <canvas id="signature-pad-2" class="signature-pad"
-                                                                style="width: 100%; height: 200px; touch-action: none;"></canvas>
+                                                        <!-- Signature Pad -->
+                                                        <div class="col-lg-8 col-md-12 mb-3">
+                                                            <div class="form-group">
+                                                                <label>Customer Signature</label>
+                                                                <div
+                                                                    style="border: 1px solid #ddd; border-radius: 4px; background: #f8f8f8;">
+                                                                    <canvas id="signature-pad-2" class="signature-pad"
+                                                                        style="width: 100%; height: 200px; touch-action: none;"></canvas>
+                                                                </div>
+                                                                <div class="mt-2">
+                                                                    <button type="button"
+                                                                        class="btn btn-secondary btn-sm clear-signature"
+                                                                        data-pad="2">
+                                                                        Clear Signature
+                                                                    </button>
+                                                                </div>
+                                                                <input type="hidden" id="signature-data-2"
+                                                                    name="signature_2">
+                                                            </div>
                                                         </div>
-                                                        <div class="mt-2">
-                                                            <button type="button"
-                                                                class="btn btn-secondary btn-sm clear-signature"
-                                                                data-pad="2">Clear Signature</button>
-                                                        </div>
-                                                        <input type="hidden" id="signature-data-2" name="signature_2">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Date:</label>
-                                                        <input type="date" class="form-control" name="cDate1"
-                                                            id="cDate1" required />
-                                                    </div>
 
-                                                    <!-- Third Customer Signature -->
-                                                    <div class="form-group mt-4">
-                                                        <label>Customer Signature</label>
-                                                        <div
-                                                            style="border: 1px solid #ddd; border-radius: 4px; background: #f8f8f8;">
-                                                            <canvas id="signature-pad-3" class="signature-pad"
-                                                                style="width: 100%; height: 200px; touch-action: none;"></canvas>
+                                                        <!-- Date Field -->
+                                                        <div class="col-lg-4 col-md-12 mb-3">
+                                                            <div class="form-group">
+                                                                <label>Date:</label>
+                                                                <input type="date" class="form-control" name="cDate1"
+                                                                    id="cDate1" required />
+                                                            </div>
                                                         </div>
-                                                        <div class="mt-2">
-                                                            <button type="button"
-                                                                class="btn btn-secondary btn-sm clear-signature"
-                                                                data-pad="3">Clear Signature</button>
-                                                        </div>
-                                                        <input type="hidden" id="signature-data-3" name="signature_3">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Date:</label>
-                                                        <input type="date" class="form-control" name="cDate2"
-                                                            id="cDate2" required />
                                                     </div>
 
-                                                    <!-- Agent Signature -->
-                                                    <div class="form-group mt-4">
-                                                        <label>Agent Signature</label>
-                                                        <div
-                                                            style="border: 1px solid #ddd; border-radius: 4px; background: #f8f8f8;">
-                                                            <canvas id="signature-pad-4" class="signature-pad"
-                                                                style="width: 100%; height: 200px; touch-action: none;"></canvas>
+                                                    <div class="row mt-4">
+                                                        <!-- Third Customer Signature -->
+                                                        <div class="col-lg-8 col-md-12 mb-3">
+                                                            <div class="form-group">
+                                                                <label>Customer Signature</label>
+                                                                <div class="border rounded bg-light p-2">
+                                                                    <canvas id="signature-pad-3"
+                                                                        class="signature-pad w-100"
+                                                                        style="height: 200px; touch-action: none;"></canvas>
+                                                                </div>
+                                                                <div class="mt-2">
+                                                                    <button type="button"
+                                                                        class="btn btn-secondary btn-sm clear-signature"
+                                                                        data-pad="3">
+                                                                        Clear Signature
+                                                                    </button>
+                                                                </div>
+                                                                <input type="hidden" id="signature-data-3"
+                                                                    name="signature_3">
+                                                            </div>
                                                         </div>
-                                                        <div class="mt-2">
-                                                            <button type="button"
-                                                                class="btn btn-secondary btn-sm clear-signature"
-                                                                data-pad="4">Clear Signature</button>
+
+                                                        <!-- Date Field -->
+                                                        <div class="col-lg-4 col-md-12 mb-3">
+                                                            <div class="form-group">
+                                                                <label>Date:</label>
+                                                                <input type="date" class="form-control" name="cDate2"
+                                                                    id="cDate2" required />
+                                                            </div>
                                                         </div>
-                                                        <input type="hidden" id="signature-data-4"
-                                                            name="signature_agent">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label>Date:</label>
-                                                        <input type="date" class="form-control" name="aDate" id="aDate"
-                                                            required />
+
+                                                    <div class="row mt-4">
+                                                        <!-- Agent Signature -->
+                                                        <div class="col-lg-8 col-md-12 mb-3">
+                                                            <div class="form-group">
+                                                                <label>Agent Signature</label>
+                                                                <div class="border rounded bg-light p-2">
+                                                                    <canvas id="signature-pad-4"
+                                                                        class="signature-pad w-100"
+                                                                        style="height: 200px; touch-action: none;"></canvas>
+                                                                </div>
+                                                                <div class="mt-2">
+                                                                    <button type="button"
+                                                                        class="btn btn-outline-secondary btn-sm clear-signature"
+                                                                        data-pad="4">
+                                                                        <i class="bi bi-eraser"></i> Clear Signature
+                                                                    </button>
+                                                                </div>
+                                                                <input type="hidden" id="signature-data-4"
+                                                                    name="signature_agent">
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Date Field -->
+                                                        <div class="col-lg-4 col-md-12 mb-3">
+                                                            <div class="form-group">
+                                                                <label>Date:</label>
+                                                                <div class="input-group">
+                                                                    <input type="date" class="form-control" name="aDate"
+                                                                        id="aDate" required />
+                                                                    <span class="input-group-text">
+                                                                        <i class="bi bi-calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
 
+                                                    <div class="row mt-4">
+                                                        <h5 class="header-title mb-3">Payment Details:</h5>
 
-                                                    <h5 class="header-title mt-4">Payment Details:</h5>
-                                                    <div class="form-group">
-                                                        <label>PROJECT TOTAL: $</label>
-                                                        <input type="text" class="form-control" name="cEsti" id="cEsti"
-                                                            required placeholder="PROJECT TOTAL: $" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>DOWN PAYMENT: $</label>
-                                                        <input type="text" class="form-control" name="cDownPay"
-                                                            id="cDownPay" required placeholder="DOWN PAYMENT: $" />
-                                                        <br>
-                                                        <span>___% Deposit Required unless Pre-Approve</span>
-                                                        <input type="text" class="form-control" name="cPreApp"
-                                                            id="cPreApp" required
-                                                            placeholder="% Deposit Required unless Pre-Approve" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>BALANCE DUE: $</label>
-                                                        <input type="text" class="form-control" name="cBal" id="cBal"
-                                                            required placeholder="BALANCE DUE: $" />
+                                                        <!-- Project Total -->
+                                                        <div class="col-md-4 mb-3">
+                                                            <div class="form-group">
+                                                                <label>PROJECT TOTAL: $</label>
+                                                                <div class="input-group">
+                                                                    <span class="input-group-text">$</span>
+                                                                    <input type="number" class="form-control"
+                                                                        name="cEsti" id="cEsti" required
+                                                                        placeholder="0.00" step="0.01" min="0">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Down Payment -->
+                                                        <div class="col-md-4 mb-3">
+                                                            <div class="form-group">
+                                                                <label>DOWN PAYMENT: $</label>
+                                                                <div class="input-group mb-2">
+                                                                    <span class="input-group-text">$</span>
+                                                                    <input type="number" class="form-control"
+                                                                        name="cDownPay" id="cDownPay" required
+                                                                        placeholder="0.00" step="0.01" min="0">
+                                                                </div>
+                                                                <div class="d-flex align-items-center">
+                                                                    <input type="number" class="form-control me-2"
+                                                                        name="cPreApp" id="cPreApp" placeholder="%"
+                                                                        style="width: 80px;" min="0" max="100">
+                                                                    <small class="text-muted">Deposit Required unless
+                                                                        Pre-Approved</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Balance Due -->
+                                                        <div class="col-md-4 mb-3">
+                                                            <div class="form-group">
+                                                                <label>BALANCE DUE: $</label>
+                                                                <div class="input-group">
+                                                                    <span class="input-group-text">$</span>
+                                                                    <input type="number" class="form-control"
+                                                                        name="cBal" id="cBal" required
+                                                                        placeholder="0.00" step="0.01" min="0" readonly>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
 
@@ -713,65 +1105,109 @@
 
                                         <!-- new form start here -->
                                         <div class="col-lg-12">
-                                            <div class="card-body pt-2">
+                                            <div class="card-body pt-2 p-0">
                                                 <form class="form-horizontal parsley-examples" method="post"
                                                     action="<?=base_url('add-manager-data')?>">
 
 
                                                     <h5 class="header-title">Customer Details:</h5>
 
-                                                    <div class="form-group">
-                                                        <label>Customer Name:</label>
-                                                        <input type="text" class="form-control" name="cCustName"
-                                                            id="cCustName" required placeholder="Customer Name" />
+                                                    <div class="row">
+                                                        <!-- Customer Name -->
+                                                        <div class="col-lg-4 col-md-5 col-sm-12">
+                                                            <div class="form-group">
+                                                                <label>Customer Name:</label>
+                                                                <input type="text" class="form-control" name="cCustName"
+                                                                    id="cCustName" required
+                                                                    placeholder="Customer Name" />
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Approval Presented By -->
+                                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                                            <div class="form-group">
+                                                                <label>Approval Presented By:</label>
+                                                                <input type="text" class="form-control" name="cAppPres"
+                                                                    id="cAppPres" required
+                                                                    placeholder="Approval Presented By" />
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Completion Date -->
+                                                        <div class="col-lg-4 col-md-3 col-sm-12">
+                                                            <div class="form-group">
+                                                                <label>Completion Date:</label>
+                                                                <input type="date" class="form-control" name="cCompDate"
+                                                                    id="cCompDate" required
+                                                                    placeholder="Completion Date" />
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label>Approval Presented By:</label>
-                                                        <input type="text" class="form-control" name="cAppPres"
-                                                            id="cAppPres" required
-                                                            placeholder="Approval Presented By" />
+
+                                                    <div class="row">
+                                                        <!-- Address (takes more space) -->
+                                                        <div class="col-md-4 col-sm-12">
+                                                            <div class="form-group">
+                                                                <label>Address:</label>
+                                                                <input type="text" class="form-control" name="cAddrs"
+                                                                    id="cAddrs" required placeholder="Address" />
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- City -->
+                                                        <div class="col-md-4 col-sm-4">
+                                                            <div class="form-group">
+                                                                <label>City:</label>
+                                                                <input type="text" class="form-control" name="cCity"
+                                                                    id="cCity" required placeholder="City" />
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- State -->
+                                                        <div class="col-md-2 col-sm-4">
+                                                            <div class="form-group">
+                                                                <label>State:</label>
+                                                                <input type="text" class="form-control" name="cState"
+                                                                    id="cState" required placeholder="State" />
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Zip -->
+                                                        <div class="col-md-2 col-sm-4">
+                                                            <div class="form-group">
+                                                                <label>Zip:</label>
+                                                                <input type="number" class="form-control" name="cZip"
+                                                                    id="cZip" required placeholder="Zip" />
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label>Completion Date:</label>
-                                                        <input type="date" class="form-control" name="cCompDate"
-                                                            id="cCompDate" required placeholder="Completion Date" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Address:</label>
-                                                        <input type="text" class="form-control" name="cAddrs"
-                                                            id="cAddrs" required placeholder="Address" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>City:</label>
-                                                        <input type="text" class="form-control" name="cCity" id="cCity"
-                                                            required placeholder="City" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>State:</label>
-                                                        <input type="text" class="form-control" name="cState"
-                                                            id="cState" required placeholder="State" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Zip:</label>
-                                                        <input type="number" class="form-control" name="cZip" id="cZip"
-                                                            required placeholder="Zip" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Home Phone:</label>
-                                                        <input type="tel" class="form-control" name="cPhone" id="cPhone"
-                                                            required placeholder="Home Phone" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Cell Phone:</label>
-                                                        <input type="tel" class="form-control" name="cCell" id="cCell"
-                                                            required placeholder="Cell Phone" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>E-Mail</label>
-                                                        <div>
-                                                            <input type="email" name="cEmail" id="cEmail"
-                                                                class="form-control" required parsley-type="email"
-                                                                placeholder="Enter a valid e-mail" />
+                                                    <div class="row">
+                                                        <!-- Home Phone -->
+                                                        <div class="col-lg-4 col-md-4 col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Home Phone:</label>
+                                                                <input type="tel" class="form-control" name="cPhone"
+                                                                    id="cPhone" required placeholder="Home Phone" />
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Cell Phone -->
+                                                        <div class="col-lg-4 col-md-4 col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Cell Phone:</label>
+                                                                <input type="tel" class="form-control" name="cCell"
+                                                                    id="cCell" required placeholder="Cell Phone" />
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Email -->
+                                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                                            <div class="form-group">
+                                                                <label>E-Mail</label>
+                                                                <input type="email" name="cEmail" id="cEmail"
+                                                                    class="form-control" required parsley-type="email"
+                                                                    placeholder="Enter a valid e-mail" />
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -794,46 +1230,68 @@
                                                         make a claim against Contractor for overlooking any item that
                                                         was not brought to the attention of Contractor during the
                                                         inspection or final walk-through.</p>
-                                                    <!-- 1st Customer Signature -->
-                                                    <div class="form-group mt-4">
-                                                        <label>Customer Signature</label>
-                                                        <div
-                                                            style="border: 1px solid #ddd; border-radius: 4px; background: #f8f8f8;">
-                                                            <canvas id="signature-pad-55" class="signature-pad"
-                                                                style="width: 100%; height: 200px; touch-action: none;"></canvas>
+                                                    <div class="row mt-4">
+                                                        <!-- 1st Customer Signature -->
+                                                        <div class="col-lg-8 col-md-12 mb-3">
+                                                            <div class="form-group">
+                                                                <label>Customer Signature</label>
+                                                                <div class="border rounded bg-light p-2">
+                                                                    <canvas id="signature-pad-55"
+                                                                        class="signature-pad w-100"
+                                                                        style="height: 200px; touch-action: none;"></canvas>
+                                                                </div>
+                                                                <div class="mt-2">
+                                                                    <button type="button"
+                                                                        class="btn btn-secondary btn-sm clear-signature"
+                                                                        data-pad="55">
+                                                                        Clear Signature
+                                                                    </button>
+                                                                </div>
+                                                                <input type="hidden" id="signature-data-55"
+                                                                    name="signature_55">
+                                                            </div>
                                                         </div>
-                                                        <div class="mt-2">
-                                                            <button type="button"
-                                                                class="btn btn-secondary btn-sm clear-signature"
-                                                                data-pad="55">Clear Signature</button>
+
+                                                        <!-- Date Field -->
+                                                        <div class="col-lg-4 col-md-12 mb-3">
+                                                            <div class="form-group">
+                                                                <label>Date:</label>
+                                                                <input type="date" class="form-control" name="cDate55"
+                                                                    id="cDate55" required />
+                                                            </div>
                                                         </div>
-                                                        <input type="hidden" id="signature-data-55" name="signature_55">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Date:</label>
-                                                        <input type="date" class="form-control" name="cDate55"
-                                                            id="cDate55" required />
                                                     </div>
 
-                                                    <!-- Insurance Company Signature -->
-                                                    <div class="form-group mt-4">
-                                                        <label>Insurance Company</label>
-                                                        <div
-                                                            style="border: 1px solid #ddd; border-radius: 4px; background: #f8f8f8;">
-                                                            <canvas id="signature-pad-56" class="signature-pad"
-                                                                style="width: 100%; height: 200px; touch-action: none;"></canvas>
+                                                    <div class="row mt-4">
+                                                        <!-- Insurance Company Signature -->
+                                                        <div class="col-lg-8 col-md-12 mb-3">
+                                                            <div class="form-group">
+                                                                <label>Insurance Company</label>
+                                                                <div class="border rounded bg-light p-2">
+                                                                    <canvas id="signature-pad-56"
+                                                                        class="signature-pad w-100"
+                                                                        style="height: 200px; touch-action: none;"></canvas>
+                                                                </div>
+                                                                <div class="mt-2">
+                                                                    <button type="button"
+                                                                        class="btn btn-secondary btn-sm clear-signature"
+                                                                        data-pad="56">
+                                                                        Clear Signature
+                                                                    </button>
+                                                                </div>
+                                                                <input type="hidden" id="signature-data-56"
+                                                                    name="signature_56">
+                                                            </div>
                                                         </div>
-                                                        <div class="mt-2">
-                                                            <button type="button"
-                                                                class="btn btn-secondary btn-sm clear-signature"
-                                                                data-pad="56">Clear Signature</button>
+
+                                                        <!-- Claim # Field -->
+                                                        <div class="col-lg-4 col-md-12 mb-3">
+                                                            <div class="form-group">
+                                                                <label>Claim #:</label>
+                                                                <input type="text" class="form-control" name="cClaim"
+                                                                    id="cClaim" required />
+                                                            </div>
                                                         </div>
-                                                        <input type="hidden" id="signature-data-56" name="signature_56">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Claim #:</label>
-                                                        <input type="text" class="form-control" name="cClaim"
-                                                            id="cClaim" required />
                                                     </div>
 
 
@@ -877,105 +1335,166 @@
                                                         provided materials are deemed to have a manufacturer defect, the
                                                         labor to remove & replace the defective product will be billed &
                                                         charged at the expense of the customer, not Contractor.</p>
-                                                    <!-- 1st Customer Signature -->
-                                                    <div class="form-group mt-4">
-                                                        <label>Customer Signature</label>
-                                                        <div
-                                                            style="border: 1px solid #ddd; border-radius: 4px; background: #f8f8f8;">
-                                                            <canvas id="signature-pad-warn" class="signature-pad"
-                                                                style="width: 100%; height: 200px; touch-action: none;"></canvas>
+                                                    <div class="row mt-4">
+                                                        <!-- 1st Customer Signature with Warning -->
+                                                        <div class="col-lg-8 col-md-12 mb-3">
+                                                            <div class="form-group">
+                                                                <label>Customer Signature</label>
+                                                                <div class="border rounded bg-light p-2">
+                                                                    <canvas id="signature-pad-warn"
+                                                                        class="signature-pad w-100"
+                                                                        style="height: 200px; touch-action: none;"></canvas>
+                                                                </div>
+                                                                <div class="mt-2">
+                                                                    <button type="button"
+                                                                        class="btn btn-secondary btn-sm clear-signature"
+                                                                        data-pad="warn">
+                                                                        Clear Signature
+                                                                    </button>
+                                                                </div>
+                                                                <input type="hidden" id="signature-data-warn"
+                                                                    name="signature_warn">
+                                                            </div>
                                                         </div>
-                                                        <div class="mt-2">
-                                                            <button type="button"
-                                                                class="btn btn-secondary btn-sm clear-signature"
-                                                                data-pad="warn">Clear Signature</button>
+
+                                                        <!-- Date Field -->
+                                                        <div class="col-lg-4 col-md-12 mb-3">
+                                                            <div class="form-group">
+                                                                <label>Date:</label>
+                                                                <input type="date" class="form-control" name="cDatewarn"
+                                                                    id="cDatewarn" required />
+                                                            </div>
                                                         </div>
-                                                        <input type="hidden" id="signature-data-warn"
-                                                            name="signature_warn">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Date:</label>
-                                                        <input type="date" class="form-control" name="cDatewarn"
-                                                            id="cDatewarn" required />
                                                     </div>
 
 
 
+                                                    <div class="row mt-2">
+                                                        <div class="col-12">
+                                                            <h5 class="header-title mb-3">Release of Lien Upon Final
+                                                                Payment:</h5>
+                                                            <div class="alert alert-light mb-4">
+                                                                <p class="mb-0">Contractor has been paid-in-full and all
+                                                                    payments and obligations by the homeowner have been
+                                                                    satisfied. Furthermore Contractor releases all liens
+                                                                    or intent to lien documents upon final payment.</p>
+                                                            </div>
 
-                                                    <h5 class="header-title mt-2">Release of Lien Upon Final Payment:
-                                                    </h5>
-                                                    <p>Contractor has been paid-in-full and all payments and
-                                                        obligations by the homeowner have been satisfied.
-                                                        Furthermore Contractor releases all liens or intent to lien
-                                                        documents upon final payment.</p>
-                                                    <div class="form-group">
-                                                        <label>Original Contract Total $:</label>
-                                                        <input type="number" class="form-control" name="ContTotal"
-                                                            id="ContTotal" required
-                                                            placeholder="Original Contract Total" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Change Order(s) Total $: </label><strong> +/-</strong>
-                                                        <input type="number" class="form-control" name="ContTotal"
-                                                            id="ContTotal" required
-                                                            placeholder="Change Order(s) Total" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Change Order(s) Total $: </label><strong> +/-</strong>
-                                                        <input type="number" class="form-control" name="ContTotal"
-                                                            id="ContTotal" required
-                                                            placeholder="Change Order(s) Total" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Project Total $: </label><strong> =</strong>
-                                                        <input type="number" class="form-control" name="ProjTotal"
-                                                            id="ProjTotal" required placeholder="Project Total" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Payment #1 - Down Payment Amount $: </label><strong>
-                                                            -</strong>
-                                                        <input type="number" class="form-control" name="PaymentDown"
-                                                            id="PaymentDown" required
-                                                            placeholder="Payment #1 - Down Payment Amount" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Payment #2 $: </label><strong>
-                                                            -</strong>
-                                                        <input type="number" class="form-control" name="PaymentDown2"
-                                                            id="PaymentDown2" required placeholder="Payment #2" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Final Payment Amount Due $: </label><strong>
-                                                            =</strong>
-                                                        <input type="number" class="form-control" name="FinalPay"
-                                                            id="FinalPay" required
-                                                            placeholder="Final Payment Amount Due" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Check Number: </label>
-                                                        <input type="number" class="form-control" name="CheckNumber"
-                                                            id="CheckNumber" required placeholder="Check Number" />
-                                                    </div>
-                                                    <!-- 1st Customer Signature -->
-                                                    <div class="form-group mt-4">
-                                                        <label>Customer Signature</label>
-                                                        <div
-                                                            style="border: 1px solid #ddd; border-radius: 4px; background: #f8f8f8;">
-                                                            <canvas id="signature-pad-end" class="signature-pad"
-                                                                style="width: 100%; height: 200px; touch-action: none;"></canvas>
+                                                            <!-- Payment Calculation Section -->
+                                                            <div class="row mb-4">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group mb-3">
+                                                                        <label>Original Contract Total $:</label>
+                                                                        <input type="number" class="form-control"
+                                                                            name="ContTotal" id="ContTotal" required
+                                                                            placeholder="0.00" step="0.01" min="0">
+                                                                    </div>
+
+                                                                    <div class="form-group mb-3">
+                                                                        <div class="d-flex align-items-center">
+                                                                            <label class="me-2">Change Order(s) Total
+                                                                                $:</label>
+                                                                            <strong class="me-2">+/-</strong>
+                                                                        </div>
+                                                                        <input type="number" class="form-control"
+                                                                            name="ChangeOrderTotal"
+                                                                            id="ChangeOrderTotal" required
+                                                                            placeholder="0.00" step="0.01">
+                                                                    </div>
+
+                                                                    <div class="form-group mb-3">
+                                                                        <div class="d-flex align-items-center">
+                                                                            <label class="me-2">Project Total $:</label>
+                                                                            <strong class="me-2">=</strong>
+                                                                        </div>
+                                                                        <input type="number" class="form-control"
+                                                                            name="ProjTotal" id="ProjTotal" required
+                                                                            placeholder="0.00" step="0.01" readonly>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group mb-3">
+                                                                        <div class="d-flex align-items-center">
+                                                                            <label class="me-2">Payment #1 - Down
+                                                                                Payment $:</label>
+                                                                            <strong class="me-2">-</strong>
+                                                                        </div>
+                                                                        <input type="number" class="form-control"
+                                                                            name="PaymentDown" id="PaymentDown" required
+                                                                            placeholder="0.00" step="0.01" min="0">
+                                                                    </div>
+
+                                                                    <div class="form-group mb-3">
+                                                                        <div class="d-flex align-items-center">
+                                                                            <label class="me-2">Payment #2 $:</label>
+                                                                            <strong class="me-2">-</strong>
+                                                                        </div>
+                                                                        <input type="number" class="form-control"
+                                                                            name="PaymentDown2" id="PaymentDown2"
+                                                                            required placeholder="0.00" step="0.01"
+                                                                            min="0">
+                                                                    </div>
+
+                                                                    <div class="form-group mb-3">
+                                                                        <div class="d-flex align-items-center">
+                                                                            <label class="me-2">Final Payment Amount Due
+                                                                                $:</label>
+                                                                            <strong class="me-2">=</strong>
+                                                                        </div>
+                                                                        <input type="number" class="form-control"
+                                                                            name="FinalPay" id="FinalPay" required
+                                                                            placeholder="0.00" step="0.01" readonly>
+                                                                    </div>
+
+
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label>Check Number:</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="CheckNumber" id="CheckNumber" required
+                                                                        placeholder="Check #">
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Signature Section -->
+                                                            <div class="row mt-4">
+                                                                <div class="col-lg-8 col-md-12 mb-3">
+                                                                    <div class="form-group">
+                                                                        <label>Customer Signature</label>
+                                                                        <div class="border rounded bg-light p-2">
+                                                                            <canvas id="signature-pad-end"
+                                                                                class="signature-pad w-100"
+                                                                                style="height: 200px; touch-action: none;"></canvas>
+                                                                        </div>
+                                                                        <div class="mt-2">
+                                                                            <button type="button"
+                                                                                class="btn btn-secondary btn-sm clear-signature"
+                                                                                data-pad="end">
+                                                                                Clear Signature
+                                                                            </button>
+                                                                        </div>
+                                                                        <input type="hidden" id="signature-data-end"
+                                                                            name="signature_end">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-4 col-md-12 mb-3">
+                                                                    <div class="form-group">
+                                                                        <label>Date:</label>
+                                                                        <div class="input-group">
+                                                                            <input type="date" class="form-control"
+                                                                                name="cDateend" id="cDateend"
+                                                                                required />
+                                                                            <span class="input-group-text">
+                                                                                <i class="bi bi-calendar"></i>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="mt-2">
-                                                            <button type="button"
-                                                                class="btn btn-secondary btn-sm clear-signature"
-                                                                data-pad="end">Clear Signature</button>
-                                                        </div>
-                                                        <input type="hidden" id="signature-data-end"
-                                                            name="signature_end">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Date:</label>
-                                                        <input type="date" class="form-control" name="cDateend"
-                                                            id="cDateend" required />
                                                     </div>
 
 
@@ -1572,5 +2091,22 @@
     }
     ?>
 </body>
+
+
+<!-- JavaScript to toggle sections -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
+
+    paymentMethods.forEach(method => {
+        method.addEventListener('change', function() {
+            document.querySelector('.check-details').style.display =
+                this.id === 'cPerCash' ? 'block' : 'none';
+            document.querySelector('.credit-card-details').style.display =
+                this.id === 'cCredit' ? 'block' : 'none';
+        });
+    });
+});
+</script>
 
 </html>
