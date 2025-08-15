@@ -82,6 +82,8 @@ $route['delete-job/:any']='welcome/DeletJob';
 //-- admin job view
 $route['admin-view-job/:any']='welcome/adminJobView';
 $route['mark-sign-on-complete/:any']='welcome/signOnComplete';
+$route['add-initialvisit-data/:any']='welcome/InitialVisitData';
+$route['download-initialvisit-pdf/:any']='welcome/downloadInitialVisitPDF';
 //----admin job view material delivery
 $route['add-material-delivery-data/:any']='welcome/materialDeliveryData';
 //----admin installation images upload
@@ -90,6 +92,8 @@ $route['add-installation-imgs-data/:any']='welcome/installationImgUpload';
 $route['add-manager-review-date-data/:any']='welcome/managerfainalReviewDate';
 //----admin mark job close
 $route['mark-job-close-complete/:any']='welcome/managerMarkJobClose';
+$route['add-job-close-form-data/:any']='welcome/jobcloseFormData';
+$route['download-jobclose-pdf/:any']='welcome/jobcloseFormPDFDownload';
 
 
 //client dashboard
