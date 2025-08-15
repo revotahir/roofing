@@ -28,12 +28,12 @@
     <!-- Begin page -->
     <div class="wrapper">
 
-        
-    <?php
+
+        <?php
         include('components/header.php');
     ?>
 
-        
+
 
         <!-- ============================================================== -->
         <!-- Start Page Content here -->
@@ -52,16 +52,16 @@
                         <div class="text-end">
                             <ol class="breadcrumb m-0 py-0">
                                 <li class="breadcrumb-item"><a href="<?=base_url('dashboard')?>">Dashboard</a></li>
-                                
-                                <li class="breadcrumb-item"><a >Managers</a></li>
-                                
+
+                                <li class="breadcrumb-item"><a>Managers</a></li>
+
                                 <li class="breadcrumb-item active">Ad New Manager</li>
                             </ol>
                         </div>
                     </div>
                 </div>
 
-            
+
 
                 <div class="row">
                     <div class="col-lg-3"></div>
@@ -69,38 +69,44 @@
                         <div class="card">
                             <div class="card-header">
                                 <h5 class="header-title">New Manager Form</h5>
-                            
+
 
                             </div>
                             <div class="card-body pt-2">
-                                <form class="form-horizontal parsley-examples" method="post" action="<?=base_url('add-manager-data')?>">
+                                <form class="form-horizontal parsley-examples" method="post"
+                                    action="<?=base_url('add-manager-data')?>">
                                     <div class="form-group">
                                         <label>Full Name</label>
-                                        <input type="text" class="form-control" name="mName" id="mName" required placeholder="Name" />
+                                        <input type="text" class="form-control" name="mName" id="mName" required
+                                            placeholder="Name" />
                                     </div>
 
 
-                                    
+
 
                                     <div class="form-group">
                                         <label>E-Mail</label>
                                         <div>
-                                            <input type="email" name="mEmail" id="mEmail" class="form-control" required parsley-type="email" placeholder="Enter a valid e-mail" />
+                                            <input type="email" name="mEmail" id="mEmail" class="form-control" required
+                                                parsley-type="email" placeholder="Enter a valid e-mail" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label>Set Password</label>
                                         <div>
-                                            <input type="password" id="pass2" name="pass2" class="form-control" required placeholder="Password" />
+                                            <input type="password" id="pass2" name="pass2" class="form-control" required
+                                                placeholder="Password" />
                                         </div>
                                         <div class="mt-2">
-                                            <input type="password" class="form-control" required data-parsley-equalto="#pass2" placeholder="Re-Type Password" />
+                                            <input type="password" class="form-control" required
+                                                data-parsley-equalto="#pass2" placeholder="Re-Type Password" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label>Phone Number</label>
                                         <div>
-                                            <input data-parsley-type="number" id="mPhone" name="mPhone" type="text" class="form-control" required placeholder="Enter Phone Number" />
+                                            <input data-parsley-type="number" id="mPhone" name="mPhone" type="text"
+                                                class="form-control" required placeholder="Enter Phone Number" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -119,12 +125,12 @@
                     </div>
                     <div class="col-lg-3"></div>
 
-                 
+
                 </div>
 
             </div> <!-- container -->
 
-        
+
 
         </div>
 
@@ -154,28 +160,28 @@
     <?php
     if ($this->session->flashdata('managerAdded') != '') {
     ?>
-        <script type="text/javascript">
-            toastr.options = {
-                "closeButton": true,
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            }
-            toastr.success('New Manager Added!');
-        </script>
+    <script type="text/javascript">
+    toastr.options = {
+        "closeButton": true,
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+    toastr.success('New Manager Added!');
+    </script>
     <?php
     }
     ?>
     <?php
     if ($this->session->flashdata('EmailError') != '') {
     ?>
-        <script type="text/javascript">
-            toastr.options = {
-                "closeButton": true,
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            }
-            toastr.error('Email Already Registered!');
-        </script>
+    <script type="text/javascript">
+    toastr.options = {
+        "closeButton": true,
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+    toastr.error('Email Already Registered!');
+    </script>
     <?php
     }
     ?>
