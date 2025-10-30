@@ -76,7 +76,7 @@
                                                 <th>Manager</th>
                                                 <th>Client</th>
                                                 <th>Location</th>
-                                                <th>First Interaction Date</th>
+                                                <th>Contract Date</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>

@@ -410,6 +410,8 @@ class Welcome extends CI_Controller
 			// get job feed back data
 			if ($this->data['jobStatus'][0]['feedback'] != 0) {
 				$this->data['jobFeedback'] = $this->generic->GetData('jobfeedback', array('jobID' => $this->uri->segment(2)));
+			} else {
+				$this->data['jobFeedback'] = false;
 			}
 			$this->load->view('jobs/adminJobView', $this->data);
 		} else {
@@ -445,6 +447,7 @@ class Welcome extends CI_Controller
 
 			$dompdf->loadHtml($html);
 			$dompdf->setPaper('A4', 'portrait');
+			$dompdf->set_option('isRemoteEnabled', true);
 			$dompdf->render();
 			ob_clean();
 			// Output PDF for download
@@ -459,7 +462,18 @@ class Welcome extends CI_Controller
 	{
 		if ($this->session->userdata('loginData')) {
 			$this->data['jobDetail'] = $this->generic->GetJobList(array('j.jobID' => $this->uri->segment(2)));
-			// var_dump($this->input->post('cOthVen'));die;
+			// var_dump($this->input->post('signature_2'));
+			if ($this->input->post('signature_2') != '') {
+				$date1 = date('Y-m-d');
+			} else {
+				$date1 = null;
+			}
+			
+			if ($this->input->post('signature_agent') != '') {
+				$date3 = date('Y-m-d');
+			} else {
+				$date3 = null;
+			}
 			$data = array(
 				'jobID'               => $this->uri->segment(2),
 				'cName'               => $this->data['jobDetail'][0]['client_name'],
@@ -478,6 +492,10 @@ class Welcome extends CI_Controller
 				'cChiSq'              => $this->input->post('cChiSq'),
 				'cOthVen'             => $this->input->post('cOthVen'),
 				'cFlaYes'             => $this->input->post('cFlaYes'),
+				'shingleColor1'      => $this->input->post('shingleColor1'),
+				'shingleColor2'      => $this->input->post('shingleColor2'),
+				'shingleColor3'      => $this->input->post('shingleColor3'),
+				'shingleAddInfo'      => $this->input->post('shingleAddInfo'),
 				'cSingSto'            => $this->input->post('cSingSto'),
 				'cPitch'             => $this->input->post('cPitch'),
 				'cRidVen'             => $this->input->post('cRidVen'),
@@ -521,17 +539,19 @@ class Welcome extends CI_Controller
 				'cCard'               => $this->input->post('cCard'),
 				'cDateCredit'         => $this->input->post('ExpDate'),
 				'cCVC'                => $this->input->post('cCVC'),
-				'cEsti'               => $this->input->post('cEsti'),
+				// 'cEsti'               => $this->input->post('cEsti'),
 				'cCont'               => $this->input->post('cCont'),
 				'cContPhone'          => $this->input->post('cContPhone'),
 				'cNotic'              => $this->input->post('cNotic'),
-				'signature_1'         => $this->input->post('signature_1'),
-				'signature_2'         => $this->input->post('signature_2'),
-				'cDate1'              => $this->input->post('cAppDate1'),
-				'signature_3'         => $this->input->post('signature_3'),
-				'cDate2'              => $this->input->post('cAppDate2'),
+				// 'signature_1'         => $this->input->post('signature_1'),
+				// 'signature_2'         => $this->input->post('signature_2'),
+				'cDate1'              => $date1,
+				'cAppName'			  =>$this->input->post('cAppName'),
+				// 'signature_3'         => $this->input->post('signature_3'),
+				
 				'signature_agent'     => $this->input->post('signature_agent'),
-				'aDate'               => $this->input->post('aDate'),
+				'aDate'               => $date3,
+				'aAppName'=>$this->input->post('aAppName'),
 				'pTotal'            => $this->input->post('pTotal'),
 				'cDownPay'            => $this->input->post('cDownPay'),
 				'cPreApp'             => $this->input->post('cPreApp'),
@@ -539,6 +559,24 @@ class Welcome extends CI_Controller
 				'created_at'          => date('Y-m-d H:i:s')
 			);
 			$checkdataexist = $this->generic->GetData('initialvisitdata', array('jobID' => $this->uri->segment(2)));
+			//setup signature
+			if ($checkdataexist[0]['signature_1'] == '') {
+				$data['signature_1'] = $this->input->post('signature_1');
+			} else {
+				$data['signature_1'] = $checkdataexist[0]['signature_1'];
+			}
+			if ($checkdataexist[0]['signature_2'] == '') {
+				$data['signature_2'] = $this->input->post('signature_2');
+			} else {
+				$data['signature_2'] = $checkdataexist[0]['signature_2'];
+			}
+			
+			if ($checkdataexist[0]['signature_agent'] == '') {
+				$data['signature_agent'] = $this->input->post('signature_agent');
+			} else {
+				$data['signature_agent'] = $checkdataexist[0]['signature_agent'];
+			}
+			//update or insert
 			if ($checkdataexist) {
 				$this->generic->Update('initialvisitdata', array('jobID' => $this->uri->segment(2)), $data);
 			} else {
@@ -547,7 +585,13 @@ class Welcome extends CI_Controller
 			}
 			//update job status
 			$this->session->set_flashdata('InitialVisitDataSet', 1);
-			redirect(base_url('admin-view-job/') . $this->uri->segment(2));
+			// die($_GET['client-view']);
+			if ($_GET['client-view'] == 1) {
+				redirect(base_url('client-view-job/') . $this->uri->segment(2));
+			} else {
+
+				redirect(base_url('admin-view-job/') . $this->uri->segment(2));
+			}
 		} else {
 			redirect(base_url());
 		}
@@ -579,7 +623,7 @@ class Welcome extends CI_Controller
 			$this->load->helper('file');
 			// Configuration for file upload
 			$config['upload_path'] = './assets/uploads/'; // Set your upload path
-			$config['allowed_types'] = 'jpg|jpeg|png|gif|webp';
+			$config['allowed_types'] = '*';
 			$config['max_size'] = 25048; // 2MB max size
 
 			// Initialize the upload library with the config
@@ -665,7 +709,7 @@ class Welcome extends CI_Controller
 		if ($this->session->userdata('loginData')) {
 			$this->generic->Update('jobstatus', array('jobID' => $this->uri->segment(2)), array('jobClose' => 2, 'jobCloseDate' => date('Y-m-d'), 'feedback' => 1));
 			$this->session->set_flashdata('jobmarkclose', 1);
-			redirect(base_url('admin-view-job/') . $this->uri->segment(2). '?jobclose=1');
+			redirect(base_url('admin-view-job/') . $this->uri->segment(2) . '?jobclose=1');
 		} else {
 			redirect(base_url());
 		}
@@ -674,6 +718,21 @@ class Welcome extends CI_Controller
 	{
 		if ($this->session->userdata('loginData')) {
 			$jobdetail = $this->generic->GetJobList(array('j.jobID' => $this->uri->segment(2)));
+			if ($this->input->post('signature_55') != '') {
+				$date1 = date('Y-m-d');
+			} else {
+				$date1 = null;
+			}
+			if ($this->input->post('signature_warn') != '') {
+				$date2 = date('Y-m-d');
+			} else {
+				$date2 = null;
+			}
+			if ($this->input->post('signature_end') != '') {
+				$date3 = date('Y-m-d');
+			} else {
+				$date3 = null;
+			}
 			$data = array(
 				'jobID'            => $this->uri->segment(2),
 				'cCustName'        => 	$this->input->post('cCustName'),
@@ -689,7 +748,7 @@ class Welcome extends CI_Controller
 
 				// Customer Approval
 				'signature_55'     => $this->input->post('signature_55'),
-				'cDate55'          => $this->input->post('cDate55'),
+				'cDate55'          => $date1,
 
 				// Insurance Company
 				'signature_56'     => $this->input->post('signature_56'),
@@ -697,7 +756,7 @@ class Welcome extends CI_Controller
 
 				// Warranty
 				'signature_warn'   => $this->input->post('signature_warn'),
-				'cDatewarn'        => $this->input->post('cDatewarn'),
+				'cDatewarn'        => $date2,
 
 				// Release of Lien / Payment Calculation
 				'ContTotal'        => $this->input->post('ContTotal'),
@@ -710,25 +769,53 @@ class Welcome extends CI_Controller
 
 				// Final Signature
 				'signature_end'    => $this->input->post('signature_end'),
-				'cDateend'         => $this->input->post('cDateend'),
+				'cDateend'         => $date3,
 
 				'created_at'       => date('Y-m-d H:i:s')
 			);
+
 			$checkDataExist = $this->generic->GetData('jobcloseformdata', array('jobID' => $this->uri->segment(2)));
+			//setup signature
+			if ($checkDataExist[0]['signature_55'] == '') {
+				$data['signature_55'] = $this->input->post('signature_55');
+			} else {
+				$data['signature_55'] = $checkDataExist[0]['signature_55'];
+			}
+			if ($checkDataExist[0]['signature_56'] == '') {
+				$data['signature_56'] = $this->input->post('signature_56');
+			} else {
+				$data['signature_56'] = $checkDataExist[0]['signature_56'];
+			}
+			if ($checkDataExist[0]['signature_warn'] == '') {
+				$data['signature_warn'] = $this->input->post('signature_warn');
+			} else {
+				$data['signature_warn'] = $checkDataExist[0]['signature_warn'];
+			}
+			if ($checkDataExist[0]['signature_end'] == '') {
+				$data['signature_end'] = $this->input->post('signature_end');
+			} else {
+				$data['signature_end'] = $checkDataExist[0]['signature_end'];
+			}
+
 			if ($checkDataExist) {
 				//update data
 				$this->generic->Update('jobcloseformdata', array('jobID' => $this->uri->segment(2)), $data);
 			} else {
 				//insert data
-			$this->generic->InsertData('jobcloseformdata', $data);
+				$this->generic->InsertData('jobcloseformdata', $data);
 			}
 			$this->session->set_flashdata('jobCloseFormdataadded', 1);
-			redirect(base_url('admin-view-job/') . $this->uri->segment(2). '?jobclose=1');
+			if ($this->session->userdata['loginData']['userType'] == 3) {
+				redirect(base_url('client-view-job/') . $this->uri->segment(2) . '#step-6');
+			} else {
+				redirect(base_url('admin-view-job/') . $this->uri->segment(2) . '?jobclose=1');
+			}
 		} else {
 			redirect(base_url());
 		}
 	}
-	public function jobcloseFormPDFDownload(){
+	public function jobcloseFormPDFDownload()
+	{
 		if ($this->session->userdata('loginData')) {
 			$data['jobDetail'] = $this->generic->GetJobList(array('j.jobID' => $this->uri->segment(2)));
 			$data['jobCloseFormData'] = $this->generic->GetData('jobcloseformdata', array('jobID' => $this->uri->segment(2)));

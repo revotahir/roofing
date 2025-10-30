@@ -13,10 +13,24 @@
         .section { margin-bottom: 25px; }
         .label { font-weight: bold; width: 220px; }
         .signature-img { border: 1px solid #ccc; border-radius: 4px; margin-top: 5px; margin-bottom: 10px; }
+         .watermark {
+      position: fixed;
+      top: 50%;
+      left: 40%;
+      width: 400px;   /* adjust size */
+      height: 400px;
+      opacity:1;   /* transparency */
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
     </style>
 </head>
 <body>
-    <h1>Initial Visit Form</h1>
+      <img src="<?=base_url()?>assets/images/small-logo-grey.png" class="watermark">
+    <center>
+
+        <h1>A-MEN Roofing Group Service Contract</h1>
+    </center>
     <div class="section">
         <table>
             <tr><td class="label">Client Name</td><td><?= $initialVisitData[0]['cName'] ?? '' ?></td></tr>
@@ -62,6 +76,15 @@
         </table>
     </div>
 
+    <h2>Shingle Manufacturer</h2>
+    <div class="section">
+        <table>
+            <tr><td class="label">Color 1</td><td><?= $initialVisitData[0]['shingleColor1'] ?? '' ?></td></tr>
+            <tr><td class="label">Color 2</td><td><?= $initialVisitData[0]['shingleColor2'] ?? '' ?></td></tr>
+            <tr><td class="label">Color 3</td><td><?= $initialVisitData[0]['shingleColor3'] ?? '' ?></td></tr>
+            <tr><td class="label">Additional Information</td><td><?= $initialVisitData[0]['shingleAddInfo'] ?? '' ?></tr>
+        </table>
+    </div>
     <h2>Ventilation & Gutters</h2>
     <div class="section">
         <table>
@@ -125,7 +148,12 @@
                     echo "Check";
                 } elseif($initialVisitData[0]['paymentMethod'] == 3){
                     echo "Credit Card";
-                } else {
+                }else if($initialVisitData[0]['paymentMethod'] == 4){
+                    echo 'Electronic Deposit (ACH)';
+                }else if($initialVisitData[0]['paymentMethod'] == 4){
+                    echo 'Wire Transfer';
+                }
+                 else {
                     echo "Not Specified";
                 }
             } else {
@@ -202,8 +230,6 @@
         </table>
     </div>
 
-    <div class="section">
-        <span style="font-size:11px;color:#888;">Generated on <?= date('Y-m-d H:i') ?></span>
-    </div>
+   
 </body>
 </html>

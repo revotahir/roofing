@@ -44,6 +44,8 @@ class client extends CI_Controller
 			$this->data['jobDetail'] = $this->generic->GetJobList(array('j.jobID' => $this->uri->segment(2)));
 			//get job status
 			$this->data['jobStatus'] = $this->generic->GetData('jobstatus', array('jobID' => $this->uri->segment(2)));
+			$this->data['initialVisitData'] = $this->generic->GetData('initialvisitdata', array('jobID' => $this->uri->segment(2)));
+			$this->data['jobCloseFormData'] = $this->generic->GetData('jobcloseformdata', array('jobID' => $this->uri->segment(2)));
 			//step status
 			$StepCount = '#step-1';
 			//get financiung details if any
@@ -114,7 +116,11 @@ class client extends CI_Controller
 			$this->generic->InsertData('jobfinancing', $data);
 			$this->generic->Update('jobstatus', array('jobID' => $this->uri->segment(2)), array('financing' => 2, 'materialDelivery' => 1));
 			$this->session->set_flashdata('insuranceDataUpdated', 1);
+			if($this->session->userdata['loginData']['userType']==3){
 			redirect(base_url('client-view-job/') . $this->uri->segment(2));
+			}else{
+				redirect(base_url('admin-view-job/').$this->uri->segment(2));
+			}
 		} else {
 			redirect(base_url());
 		}

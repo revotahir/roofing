@@ -41,6 +41,20 @@
             color: #2c3e50;
             font-weight: 600;
         }
+
+        .signature-pad[disabled],
+        .signature-pad.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        input[readonly],
+        textarea[readonly] {
+            background-color: #f0f0f0;
+            color: #999;
+            cursor: not-allowed;
+            border: 1px solid #ccc;
+        }
     </style>
 </head>
 
@@ -162,7 +176,7 @@
                                         ?>
                                             <div class="col-lg-12">
                                                 <div class="card-header p-0">
-                                                    <h3>Services Contract</h3><br>
+                                                    <h3>Initial Service Contract</h3><br>
                                                     <h5 class="header-title">Customer Details</h5>
                                                 </div>
                                                 <div class="card-body pt-2 p-0">
@@ -295,7 +309,7 @@
 
 
 
-                                                        <h5 class="header-title">Roofing to be Completed:</h5>
+                                                        <h5 class="header-title">Job Details:</h5>
 
                                                         <div class="row">
                                                             <!-- House Square -->
@@ -393,6 +407,35 @@
                                                                                 value="2" id="cFlaYes2" />
                                                                             <label class="form-check-label" for="cFlaYes2">No Flat
                                                                                 Roof</label>
+                                                                        </div><br>
+                                                                        <h5 class="header-title">Shingle Manufacturer</h5>
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control"
+                                                                                name="shingleColor1"
+                                                                                <?php if (!empty($initialVisitData[0]['shingleColor1'])) { ?>
+                                                                                value="<?= $initialVisitData[0]['shingleColor1'] ?>"
+                                                                                <?php } ?>
+                                                                                id="shingleColor1" />
+
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="">Shingle Color</label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="shingleColor2"
+                                                                                <?php if (!empty($initialVisitData[0]['shingleColor2'])) { ?>
+                                                                                value="<?= $initialVisitData[0]['shingleColor2'] ?>"
+                                                                                <?php } ?>
+                                                                                id="shingleColor2" />
+                                                                        </div>
+
+                                                                        <div class="form-group">
+                                                                            <label for="">Additional Information</label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="shingleAddInfo"
+                                                                                <?php if (!empty($initialVisitData[0]['shingleAddInfo'])) { ?>
+                                                                                value="<?= $initialVisitData[0]['shingleAddInfo'] ?>"
+                                                                                <?php } ?>
+                                                                                id="shingleAddInfo" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -558,7 +601,7 @@
                                                                                             name="cRidg" id="cRidg"
                                                                                             placeholder="Length" />
                                                                                         <span
-                                                                                            class="input-group-text">ft</span>
+                                                                                            class="input-group-text">LF</span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -666,12 +709,14 @@
                                                                         <div class="row mb-3">
                                                                             <div class="col-md-6">
                                                                                 <label class="form-label">Color</label>
-                                                                                <input type="color"
+                                                                                <input type="text"
                                                                                     <?php if (!empty($initialVisitData[0]['cColor'])) { ?>
                                                                                     value="<?= $initialVisitData[0]['cColor'] ?>"
                                                                                     <?php } ?>
-                                                                                    class="form-control form-control-color"
-                                                                                    name="cColor" id="cColor" />
+                                                                                    class="form-control "
+                                                                                    name="cColor" id="cColor" /> <br>
+                                                                                <span>Certain gutter color selections may require an upcharge if manufacturer does not provide that color as a base. Gutter would have to be painted with exterior metal paint.
+                                                                                    Paint match will be closest relative and may not be exact.</span>
                                                                             </div>
                                                                         </div>
 
@@ -939,7 +984,7 @@
                                                             contract. There are (3) sheets er square.</span>
                                                         <div class="form-group mt-2">
                                                             <label>Initials</label>
-                                                            <textarea type="textarea" class="form-control" name="cInit"
+                                                            <textarea type="textarea" readonly class="form-control" name="cInit"
                                                                 id="cInit" placeholder="Initials"><?php if (!empty($initialVisitData[0]['cInit'])) { ?><?= $initialVisitData[0]['cInit'] ?><?php } ?></textarea>
                                                         </div>
                                                         <h5 class="header-title">Permits:</h5>
@@ -953,14 +998,14 @@
                                                             permit.</span>
                                                         <div class="form-group mt-2">
                                                             <label>Initials</label>
-                                                            <textarea type="textarea" class="form-control" name="cPer"
+                                                            <textarea type="textarea" readonly class="form-control" name="cPer"
                                                                 id="cPer" placeholder="Initials"><?php if (!empty($initialVisitData[0]['cPer'])) { ?><?= $initialVisitData[0]['cPer'] ?><?php } ?></textarea>
                                                         </div>
 
 
 
                                                         <h5 class="header-title">NOTES:</h5>
-                                                        <textarea type="textarea" class="form-control" name="cNotes"
+                                                        <textarea type="textarea" class="form-control" readonly name="cNotes"
                                                             id="cNotes" placeholder="NOTES"><?php if (!empty($initialVisitData[0]['cNotes'])) { ?><?= $initialVisitData[0]['cNotes'] ?><?php } ?></textarea>
 
 
@@ -983,12 +1028,27 @@
 
                                                                             <div class="form-check mb-3">
                                                                                 <input type="radio" class="form-check-input"
+                                                                                    <?php if (!empty($initialVisitData[0]['paymentMethod']) &&  $initialVisitData[0]['paymentMethod'] == 4) { ?>
+                                                                                    checked
+                                                                                    <?php } ?>
+                                                                                    name="paymentMethod" value="4" id="EDeposit" />
+                                                                                <label class="form-check-label" for="EDeposit">Electronic Deposit (ACH)</label>
+                                                                            </div>
+                                                                            <div class="form-check mb-3">
+                                                                                <input type="radio" class="form-check-input"
+                                                                                    <?php if (!empty($initialVisitData[0]['paymentMethod']) &&  $initialVisitData[0]['paymentMethod'] == 5) { ?>
+                                                                                    checked
+                                                                                    <?php } ?>
+                                                                                    name="paymentMethod" value="5" id="wireTransfer" />
+                                                                                <label class="form-check-label" for="wireTransfer">Wire Transfer</label>
+                                                                            </div>
+                                                                            <div class="form-check mb-3">
+                                                                                <input type="radio" class="form-check-input"
                                                                                     <?php if (!empty($initialVisitData[0]['paymentMethod']) &&  $initialVisitData[0]['paymentMethod'] == 2) { ?>
                                                                                     checked
                                                                                     <?php } ?>
                                                                                     name="paymentMethod" value="2" id="cPerCash" />
-                                                                                <label class="form-check-label" for="cPerCash">Personal
-                                                                                    Check</label>
+                                                                                <label class="form-check-label" for="cPerCash">Cashiers Check</label>
                                                                             </div>
 
                                                                             <!-- Check Details (shown when Personal Check is selected) -->
@@ -1079,37 +1139,31 @@
                                                         </div>
 
                                                         <div class="row mt-4">
-                                                            <h5 class="header-title mb-3">Installation Details:</h5>
-                                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-3">
+                                                            <h5 class="header-title mb-3">Dedicated Field PM:</h5>
+
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-3">
                                                                 <div class="form-group">
-                                                                    <label>Estimated Install:</label>
-                                                                    <input type="text" class="form-control" name="cEsti"
-                                                                        <?php if (!empty($initialVisitData[0]['cEsti'])) { ?>
-                                                                        value="<?= $initialVisitData[0]['cEsti'] ?>"
-                                                                        <?php } ?>
-                                                                        id="cEsti"
-                                                                        placeholder="Estimated Install" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mb-3">
-                                                                <div class="form-group">
-                                                                    <label>Contractor Contact Name:</label>
-                                                                    <input type="text" class="form-control" name="cCont"
+                                                                    <label>Assigned Project Manager:</label>
+                                                                    <input type="text" class="form-control" name="cCont" readonly
                                                                         <?php if (!empty($initialVisitData[0]['cCont'])) { ?>
                                                                         value="<?= $initialVisitData[0]['cCont'] ?>"
-                                                                        <?php } ?>
+                                                                        <?php }else{ ?>
+                                                                                value="<?= $jobDetail[0]['manager_name'] ?>"
+                                                                            <?php 
+                                                                        }
+                                                                        ?>
                                                                         id="cCont" placeholder="Contractor Name" />
                                                                 </div>
                                                             </div>
-                                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-3">
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-3">
                                                                 <div class="form-group">
-                                                                    <label>Contact Phone #:</label>
-                                                                    <input type="tel" class="form-control" name="cContPhone"
+                                                                    <label>Project Manager Email Address:</label>
+                                                                    <input type="email" class="form-control" name="cContPhone"
                                                                         <?php if (!empty($initialVisitData[0]['cContPhone'])) { ?>
                                                                         value="<?= $initialVisitData[0]['cContPhone'] ?>"
                                                                         <?php } ?>
                                                                         id="cContPhone"
-                                                                        placeholder="Phone Number" />
+                                                                        placeholder="Email" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1117,17 +1171,16 @@
 
                                                         <h5 class="header-title mt-4">Notice to Customer:</h5>
                                                         <span>Upon signing this agreement, I acknowledge I
-                                                            accept to the quote provided by A-MEN Roof-
-                                                            ing Group and choose solely to work with the
+                                                            accept to the quote provided by A-Men Roofing Group and choose solely to work with the
                                                             company on any and all items listed above.</span>
                                                         <span>If there are any supplements approved by my insurance provider
                                                             in addition to initial estimates as determined
                                                             by an adjustor, I acknowledge that
-                                                            A-MEN Roofing Group will be paid
+                                                            A-Men Roofing Group will be paid
                                                             100% of such supplements.</span>
                                                         <div class="form-group mt-2">
                                                             <label>Initials</label>
-                                                            <textarea type="textarea" class="form-control" name="cNotic"
+                                                            <textarea type="textarea" readonly class="form-control" name="cNotic"
                                                                 id="cNotic" placeholder="Initials"><?php if (!empty($initialVisitData[0]['cNotic'])) { ?><?= $initialVisitData[0]['cNotic'] ?><?php } ?></textarea>
                                                         </div>
 
@@ -1138,13 +1191,13 @@
 
 
                                                             <div style="border: 1px solid #ddd; border-radius: 4px; background: #f8f8f8;">
-                                                                <canvas id="signature-pad-1" class="signature-pad"
+                                                                <canvas id="signature-pad-1" class="signature-pad disabled"
                                                                     style="width: 100%; height: 200px; touch-action: none;"></canvas>
                                                             </div>
                                                             <div class="mt-2">
-                                                                <button type="button"
+                                                                <!-- <button type="button"
                                                                     class="btn btn-secondary btn-sm clear-signature"
-                                                                    data-pad="1">Clear Signature</button>
+                                                                    data-pad="1">Clear Signature</button> -->
                                                             </div>
                                                             <input type="hidden" id="signature-data-1" name="signature_1"
                                                                 <?php if (!empty($initialVisitData[0]['signature_1'])) { ?>
@@ -1163,15 +1216,15 @@
                                                                     <label>Customer Signature</label>
                                                                     <div
                                                                         style="border: 1px solid #ddd; border-radius: 4px; background: #f8f8f8;">
-                                                                        <canvas id="signature-pad-2" class="signature-pad"
+                                                                        <canvas id="signature-pad-2" class="signature-pad disabled"
                                                                             style="width: 100%; height: 200px; touch-action: none;"></canvas>
                                                                     </div>
                                                                     <div class="mt-2">
-                                                                        <button type="button"
+                                                                        <!-- <button type="button"
                                                                             class="btn btn-secondary btn-sm clear-signature"
                                                                             data-pad="2">
                                                                             Clear Signature
-                                                                        </button>
+                                                                        </button> -->
                                                                     </div>
                                                                     <input type="hidden" id="signature-data-2"
                                                                         <?php if (!empty($initialVisitData[0]['signature_2'])) { ?>
@@ -1185,52 +1238,24 @@
                                                             <div class="col-lg-4 col-md-12 mb-3">
                                                                 <div class="form-group">
                                                                     <label>Date:</label>
-                                                                    <input type="date" class="form-control" name="cAppDate1"
+                                                                    <input type="date" class="form-control" name="cAppDate1" disabled
                                                                         <?php if (!empty($initialVisitData[0]['cDate1']) && $initialVisitData[0]['cDate1'] != '0000-00-00') { ?>
                                                                         value="<?= $initialVisitData[0]['cDate1'] ?>"
                                                                         <?php } ?>
                                                                         id="cAppDate1" />
                                                                 </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row mt-4">
-                                                            <!-- Third Customer Signature -->
-                                                            <div class="col-lg-8 col-md-12 mb-3">
                                                                 <div class="form-group">
-                                                                    <label>Customer Signature</label>
-                                                                    <div class="border rounded bg-light p-2">
-                                                                        <canvas id="signature-pad-3"
-                                                                            class="signature-pad w-100"
-                                                                            style="height: 200px; touch-action: none;"></canvas>
-                                                                    </div>
-                                                                    <div class="mt-2">
-                                                                        <button type="button"
-                                                                            class="btn btn-secondary btn-sm clear-signature"
-                                                                            data-pad="3">
-                                                                            Clear Signature
-                                                                        </button>
-                                                                    </div>
-                                                                    <input type="hidden" id="signature-data-3"
-                                                                        <?php if (!empty($initialVisitData[0]['signature_3'])) { ?>
-                                                                        value="<?= $initialVisitData[0]['signature_3'] ?>"
+                                                                    <label>Full Name:</label>
+                                                                    <input type="text" class="form-control" name="cAppName" disabled
+                                                                        <?php if (!empty($initialVisitData[0]['cDate1']) && $initialVisitData[0]['cDate1'] != '0000-00-00') { ?>
+                                                                        value="<?= $initialVisitData[0]['cDate1'] ?>"
                                                                         <?php } ?>
-                                                                        name="signature_3">
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- Date Field -->
-                                                            <div class="col-lg-4 col-md-12 mb-3">
-                                                                <div class="form-group">
-                                                                    <label>Date:</label>
-                                                                    <input type="date" class="form-control" name="cAppDate2"
-                                                                        <?php if (!empty($initialVisitData[0]['cDate2']) && $initialVisitData[0]['cDate2'] != '0000-00-00') { ?>
-                                                                        value="<?= $initialVisitData[0]['cDate2'] ?>"
-                                                                        <?php } ?>
-                                                                        id="cAppDate2" />
+                                                                        id="cAppName" />
                                                                 </div>
                                                             </div>
                                                         </div>
+
+
 
                                                         <div class="row mt-4">
                                                             <!-- Agent Signature -->
@@ -1243,11 +1268,17 @@
                                                                             style="height: 200px; touch-action: none;"></canvas>
                                                                     </div>
                                                                     <div class="mt-2">
-                                                                        <button type="button"
-                                                                            class="btn btn-outline-secondary btn-sm clear-signature"
-                                                                            data-pad="4">
-                                                                            <i class="bi bi-eraser"></i> Clear Signature
-                                                                        </button>
+                                                                        <?php
+                                                                        if (empty($initialVisitData[0]['signature_agent'])) {
+                                                                        ?>
+                                                                            <button type="button"
+                                                                                class="btn btn-outline-secondary btn-sm clear-signature"
+                                                                                data-pad="4">
+                                                                                <i class="bi bi-eraser"></i> Clear Signature
+                                                                            </button>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
                                                                     </div>
                                                                     <input type="hidden" id="signature-data-4"
                                                                         <?php if (!empty($initialVisitData[0]['signature_agent'])) { ?>
@@ -1260,9 +1291,9 @@
                                                             <!-- Date Field -->
                                                             <div class="col-lg-4 col-md-12 mb-3">
                                                                 <div class="form-group">
-                                                                    <label>Date:</label>
+                                                                    <label>Date (Automatically updated):</label>
                                                                     <div class="input-group">
-                                                                        <input type="date" class="form-control" name="aDate"
+                                                                        <input type="date" class="form-control" name="aDate" disabled
                                                                             <?php if (!empty($initialVisitData[0]['aDate']) && $initialVisitData[0]['aDate'] != '0000-00-00') { ?>
                                                                             value="<?= $initialVisitData[0]['aDate'] ?>"
                                                                             <?php } ?>
@@ -1271,6 +1302,15 @@
                                                                             <i class="bi bi-calendar"></i>
                                                                         </span>
                                                                     </div>
+
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Full Name:</label>
+                                                                    <input type="text" class="form-control" name="aAppName" 
+                                                                        <?php if (!empty($initialVisitData[0]['aAppName']) && $initialVisitData[0]['aAppName'] != '') { ?>
+                                                                        value="<?= $initialVisitData[0]['aAppName'] ?>"
+                                                                        <?php } ?>
+                                                                        id="cAppDate1" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1380,7 +1420,43 @@
                                             <?php
                                             if ($jobStatus[0]['financing'] == 1) {
                                             ?>
-                                        <h3>Submission Pending From Client</h3>
+                                        <h2>Fill Your Insurance Details</h2>
+                                        <form class="form-horizontal parsley-examples" method="post" action="<?= base_url('insurance-detailed-filled/') . $jobDetail[0]['jobID'] ?>">
+                                            <div class="form-group">
+                                                <label>Policy Holder Full Nsame</label>
+                                                <input type="text" class="form-control" name="fullName" id="fullName" required placeholder="Policy holder full name" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Insurance Provider</label>
+                                                <input type="text" class="form-control" name="IncProvider" id="IncProvider" required placeholder="Insurance Provider" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Policy Number</label>
+                                                <input type="text" class="form-control" name="policyNo" id="policyNo" required placeholder="Policy Number" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Insurance Provider Contact </label>
+                                                <input type="text" class="form-control" name="ProviderContact" id="ProviderContact" required placeholder="Insurance Provider Contact" />
+                                            </div>
+                                            <div class="form-group">
+                                                <div>
+                                                    <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
+                                                        Submit
+                                                    </button>
+                                                    <button type="reset" class="btn btn-secondary waves-effect">
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div>
+                                                    <h3>OR</h3>
+                                                    <a href="https://amenroofinggroup.com/Financing/" target="_blank" class="btn btn-primary waves-effect waves-light me-1">
+                                                        Client will be Financing
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </form>
                                         <?php
                                             } else {
                                                 if ($financingDetail[0]['financeStatus'] == 2) {
@@ -1701,11 +1777,11 @@
                                     <div class="tab-pane <?php if (isset($_GET['jobclose']) && $_GET['jobclose'] == 1) {
                                                                 echo 'active';
                                                             }   ?>" id="jobClose">
-                                        <h4>Fainal Document Sign</h4>
+                                        <h4>Completion Approval Form</h4>
                                         <?php
                                         if ($jobStatus[0]['jobClose'] != 2) {
                                         ?>
-                                            
+
 
                                             <!-- new form start here -->
                                             <div class="col-lg-12">
@@ -1733,11 +1809,8 @@
                                                             <div class="col-lg-4 col-md-4 col-sm-12">
                                                                 <div class="form-group">
                                                                     <label>Approval Presented By:</label>
-                                                                    <input type="text" class="form-control" name="cAppPres"
-                                                                        <?php
-                                                                        if (!empty($jobCloseFormData[0]['cAppPres'])) { ?>
-                                                                        value="<?= $jobCloseFormData[0]['cAppPres'] ?>" ;
-                                                                        <?php } ?>
+                                                                    <input type="text" class="form-control" name="cAppPres" readonly
+                                                                        value="<?= $initialVisitData[0]['cRName'] ?>"
                                                                         id="cAppPres"
                                                                         placeholder="Approval Presented By" />
                                                                 </div>
@@ -1763,11 +1836,9 @@
                                                             <div class="col-md-4 col-sm-12">
                                                                 <div class="form-group">
                                                                     <label>Address:</label>
-                                                                    <input type="text" class="form-control" name="cAddrs"
-                                                                        <?php
-                                                                        if (!empty($jobCloseFormData[0]['cAddrs'])) { ?>
-                                                                        value="<?= $jobCloseFormData[0]['cAddrs'] ?>" ;
-                                                                        <?php } ?>
+                                                                    <input type="text" class="form-control" name="cAddrs" readonly
+
+                                                                        value="<?= $initialVisitData[0]['cAddrs'] ?>"
                                                                         id="cAddrs" placeholder="Address" />
                                                                 </div>
                                                             </div>
@@ -1776,11 +1847,8 @@
                                                             <div class="col-md-4 col-sm-4">
                                                                 <div class="form-group">
                                                                     <label>City:</label>
-                                                                    <input type="text" class="form-control" name="cCity"
-                                                                        <?php
-                                                                        if (!empty($jobCloseFormData[0]['cCity'])) { ?>
-                                                                        value="<?= $jobCloseFormData[0]['cCity'] ?>" ;
-                                                                        <?php } ?>
+                                                                    <input type="text" class="form-control" name="cCity" readonly
+                                                                        value="<?= $initialVisitData[0]['cCity'] ?>"
                                                                         id="cCity" placeholder="City" />
                                                                 </div>
                                                             </div>
@@ -1789,11 +1857,8 @@
                                                             <div class="col-md-2 col-sm-4">
                                                                 <div class="form-group">
                                                                     <label>State:</label>
-                                                                    <input type="text" class="form-control" name="cState"
-                                                                        <?php
-                                                                        if (!empty($jobCloseFormData[0]['cState'])) { ?>
-                                                                        value="<?= $jobCloseFormData[0]['cState'] ?>" ;
-                                                                        <?php } ?>
+                                                                    <input type="text" class="form-control" name="cState" readonly
+                                                                        value="<?= $initialVisitData[0]['cState'] ?>"
                                                                         id="cState" placeholder="State" />
                                                                 </div>
                                                             </div>
@@ -1802,11 +1867,8 @@
                                                             <div class="col-md-2 col-sm-4">
                                                                 <div class="form-group">
                                                                     <label>Zip:</label>
-                                                                    <input type="number" class="form-control" name="cZip"
-                                                                        <?php
-                                                                        if (!empty($jobCloseFormData[0]['cZip'])) { ?>
-                                                                        value="<?= $jobCloseFormData[0]['cZip'] ?>" ;
-                                                                        <?php } ?>
+                                                                    <input type="number" class="form-control" name="cZip" readonly
+                                                                        value="<?= $initialVisitData[0]['cZip'] ?>"
                                                                         id="cZip" placeholder="Zip" />
                                                                 </div>
                                                             </div>
@@ -1816,11 +1878,8 @@
                                                             <div class="col-lg-4 col-md-4 col-sm-6">
                                                                 <div class="form-group">
                                                                     <label>Home Phone:</label>
-                                                                    <input type="tel" class="form-control" name="cPhone"
-                                                                        <?php
-                                                                        if (!empty($jobCloseFormData[0]['cPhone'])) { ?>
-                                                                        value="<?= $jobCloseFormData[0]['cPhone'] ?>" ;
-                                                                        <?php } ?>
+                                                                    <input type="tel" class="form-control" name="cPhone" readonly
+                                                                        value="<?= $initialVisitData[0]['cPhone'] ?>"
                                                                         id="cPhone" placeholder="Home Phone" />
                                                                 </div>
                                                             </div>
@@ -1829,11 +1888,8 @@
                                                             <div class="col-lg-4 col-md-4 col-sm-6">
                                                                 <div class="form-group">
                                                                     <label>Cell Phone:</label>
-                                                                    <input type="tel" class="form-control" name="cCell"
-                                                                        <?php
-                                                                        if (!empty($jobCloseFormData[0]['cCell'])) { ?>
-                                                                        value="<?= $jobCloseFormData[0]['cCell'] ?>" ;
-                                                                        <?php } ?>
+                                                                    <input type="tel" class="form-control" name="cCell" readonly
+                                                                        value="<?= $initialVisitData[0]['cCell'] ?>"
                                                                         id="cCell" placeholder="Cell Phone" />
                                                                 </div>
                                                             </div>
@@ -1842,12 +1898,9 @@
                                                             <div class="col-lg-4 col-md-4 col-sm-12">
                                                                 <div class="form-group">
                                                                     <label>E-Mail</label>
-                                                                    <input type="email" name="cEmail" id="cEmail"
+                                                                    <input type="email" name="cEmail" id="cEmail" readonly
                                                                         class="form-control" parsley-type="email"
-                                                                        <?php
-                                                                        if (!empty($jobCloseFormData[0]['cEmail'])) { ?>
-                                                                        value="<?= $jobCloseFormData[0]['cEmail'] ?>" ;
-                                                                        <?php } ?>
+                                                                        value="<?= $initialVisitData[0]['cEmail'] ?>"
                                                                         placeholder="Enter a valid e-mail" />
                                                                 </div>
                                                             </div>
@@ -1879,16 +1932,16 @@
                                                                     <label>Customer Signature</label>
                                                                     <div class="border rounded bg-light p-2">
                                                                         <canvas id="signature-pad-55"
-                                                                            class="signature-pad w-100"
+                                                                            class="signature-pad w-100 disabled"
                                                                             style="height: 200px; touch-action: none;"></canvas>
                                                                     </div>
-                                                                    <div class="mt-2">
+                                                                    <!-- <div class="mt-2">
                                                                         <button type="button"
                                                                             class="btn btn-secondary btn-sm clear-signature"
                                                                             data-pad="55">
                                                                             Clear Signature
                                                                         </button>
-                                                                    </div>
+                                                                    </div> -->
                                                                     <input type="hidden" id="signature-data-55"
                                                                         <?php
                                                                         if (!empty($jobCloseFormData[0]['signature_55'])) { ?>
@@ -1902,7 +1955,7 @@
                                                             <div class="col-lg-4 col-md-12 mb-3">
                                                                 <div class="form-group">
                                                                     <label>Date:</label>
-                                                                    <input type="date" class="form-control" name="cDate55"
+                                                                    <input type="date" class="form-control" name="cDate55" readonly
                                                                         <?php
                                                                         if ((!empty($jobCloseFormData[0]['cDate55']) && $jobCloseFormData[0]['cDate55'] != '0000-00-00')) { ?>
                                                                         value="<?= $jobCloseFormData[0]['cDate55'] ?>" ;
@@ -2000,16 +2053,16 @@
                                                                     <label>Customer Signature</label>
                                                                     <div class="border rounded bg-light p-2">
                                                                         <canvas id="signature-pad-warn"
-                                                                            class="signature-pad w-100"
+                                                                            class="signature-pad w-100 disabled"
                                                                             style="height: 200px; touch-action: none;"></canvas>
                                                                     </div>
-                                                                    <div class="mt-2">
+                                                                    <!-- <div class="mt-2">
                                                                         <button type="button"
                                                                             class="btn btn-secondary btn-sm clear-signature"
                                                                             data-pad="warn">
                                                                             Clear Signature
                                                                         </button>
-                                                                    </div>
+                                                                    </div> -->
                                                                     <input type="hidden" id="signature-data-warn"
                                                                         <?php
                                                                         if (!empty($jobCloseFormData[0]['signature_warn'])) { ?>
@@ -2023,7 +2076,7 @@
                                                             <div class="col-lg-4 col-md-12 mb-3">
                                                                 <div class="form-group">
                                                                     <label>Date:</label>
-                                                                    <input type="date" class="form-control" name="cDatewarn"
+                                                                    <input type="date" class="form-control" name="cDatewarn" readonly
                                                                         <?php
                                                                         if ((!empty($jobCloseFormData[0]['cDatewarn']) && $jobCloseFormData[0]['cDatewarn'] != '0000-00-00')) { ?>
                                                                         value="<?= $jobCloseFormData[0]['cDatewarn'] ?>" ;
@@ -2159,16 +2212,16 @@
                                                                             <label>Customer Signature</label>
                                                                             <div class="border rounded bg-light p-2">
                                                                                 <canvas id="signature-pad-end"
-                                                                                    class="signature-pad w-100"
+                                                                                    class="signature-pad w-100 disabled"
                                                                                     style="height: 200px; touch-action: none;"></canvas>
                                                                             </div>
-                                                                            <div class="mt-2">
+                                                                            <!-- <div class="mt-2">
                                                                                 <button type="button"
                                                                                     class="btn btn-secondary btn-sm clear-signature"
                                                                                     data-pad="end">
                                                                                     Clear Signature
                                                                                 </button>
-                                                                            </div>
+                                                                            </div> -->
                                                                             <input type="hidden" id="signature-data-end"
                                                                                 <?php
                                                                                 if (!empty($jobCloseFormData[0]['signature_end'])) { ?>
@@ -2182,7 +2235,7 @@
                                                                         <div class="form-group">
                                                                             <label>Date:</label>
                                                                             <div class="input-group">
-                                                                                <input type="date" class="form-control"
+                                                                                <input type="date" class="form-control" readonly
                                                                                     <?php
                                                                                     if ((!empty($jobCloseFormData[0]['cDateend']) && $jobCloseFormData[0]['cDateend'] != '0000-00-00')) { ?>
                                                                                     value="<?= $jobCloseFormData[0]['cDateend'] ?>" ;
@@ -2214,13 +2267,13 @@
                                                                     Submit
                                                                 </button>
                                                                 <a href="<?= base_url('mark-job-close-complete/') . $jobDetail[0]['jobID'] ?>"
-                                                class=" btn btn-danger" onclick="return validateJobCloseCompletion()" style="float: none;"><i
-                                                    class="mdi mdi-file-check-outline"> Mark as Complete</i> </a>
-                                                    <script>
-                                                        function validateJobCloseCompletion() {
-                                                            return confirm('Are you sure you want to mark this job as complete?You will not be able to edit this form after marking it as complete.');
-                                                        }
-                                                    </script>
+                                                                    class=" btn btn-danger" onclick="return validateJobCloseCompletion()" style="float: none;"><i
+                                                                        class="mdi mdi-file-check-outline"> Mark as Complete</i> </a>
+                                                                <script>
+                                                                    function validateJobCloseCompletion() {
+                                                                        return confirm('Are you sure you want to mark this job as complete?You will not be able to edit this form after marking it as complete.');
+                                                                    }
+                                                                </script>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -2235,7 +2288,7 @@
                                             <a href="" class=" btn btn-primary disabled" style="float: none;"><i
                                                     class="mdi mdi-file-check-outline"> Fainal Document sign
                                                     Completed</i>
-                                                    <a href="<?= base_url('download-jobclose-pdf/') . $jobDetail[0]['jobID'] ?>" class=" btn btn-outline-primary ml-1" style="float: none;    margin-left: 10px;"><i class="mdi mdi-download-box-outline"> Download PDF</i> </a>
+                                                <a href="<?= base_url('download-jobclose-pdf/') . $jobDetail[0]['jobID'] ?>" class=" btn btn-outline-primary ml-1" style="float: none;    margin-left: 10px;"><i class="mdi mdi-download-box-outline"> Download PDF</i> </a>
                                             </a>
                                             <p>
                                                 <strong>Job Close Date:
@@ -2523,6 +2576,20 @@
                 "hideMethod": "fadeOut"
             }
             toastr.success('Installation Images uploaded!');
+        </script>
+    <?php
+    }
+    ?>
+    <?php
+    if ($this->session->flashdata('insuranceDataUpdated') != '') {
+    ?>
+        <script type="text/javascript">
+            toastr.options = {
+                "closeButton": true,
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr.success('Financing Data uploaded!');
         </script>
     <?php
     }
