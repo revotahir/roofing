@@ -1238,7 +1238,7 @@
                                                             <div class="col-lg-4 col-md-12 mb-3">
                                                                 <div class="form-group">
                                                                     <label>Date:</label>
-                                                                    <input type="date" class="form-control" name="cAppDate1" disabled
+                                                                    <input type="date" class="form-control" name="cAppDate1" readonly
                                                                         <?php if (!empty($initialVisitData[0]['cDate1']) && $initialVisitData[0]['cDate1'] != '0000-00-00') { ?>
                                                                         value="<?= $initialVisitData[0]['cDate1'] ?>"
                                                                         <?php } ?>
@@ -1246,9 +1246,9 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Full Name:</label>
-                                                                    <input type="text" class="form-control" name="cAppName" disabled
-                                                                        <?php if (!empty($initialVisitData[0]['cDate1']) && $initialVisitData[0]['cDate1'] != '0000-00-00') { ?>
-                                                                        value="<?= $initialVisitData[0]['cDate1'] ?>"
+                                                                    <input type="text" class="form-control" name="cAppName" readonly
+                                                                        <?php if (!empty($initialVisitData[0]['cAppName']) && $initialVisitData[0]['cAppName'] != '') { ?>
+                                                                        value="<?= $initialVisitData[0]['cAppName'] ?>"
                                                                         <?php } ?>
                                                                         id="cAppName" />
                                                                 </div>
@@ -1293,7 +1293,7 @@
                                                                 <div class="form-group">
                                                                     <label>Date (Automatically updated):</label>
                                                                     <div class="input-group">
-                                                                        <input type="date" class="form-control" name="aDate" disabled
+                                                                        <input type="date" class="form-control" name="aDate" readonly
                                                                             <?php if (!empty($initialVisitData[0]['aDate']) && $initialVisitData[0]['aDate'] != '0000-00-00') { ?>
                                                                             value="<?= $initialVisitData[0]['aDate'] ?>"
                                                                             <?php } ?>

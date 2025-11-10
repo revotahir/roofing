@@ -551,7 +551,7 @@ class Welcome extends CI_Controller
 				
 				'signature_agent'     => $this->input->post('signature_agent'),
 				'aDate'               => $date3,
-				'aAppName'=>$this->input->post('aAppName'),
+				// 'aAppName'=>$this->input->post('aAppName'),
 				'pTotal'            => $this->input->post('pTotal'),
 				'cDownPay'            => $this->input->post('cDownPay'),
 				'cPreApp'             => $this->input->post('cPreApp'),
@@ -575,6 +575,9 @@ class Welcome extends CI_Controller
 				$data['signature_agent'] = $this->input->post('signature_agent');
 			} else {
 				$data['signature_agent'] = $checkdataexist[0]['signature_agent'];
+			}
+			if($this->session->userdata['loginData']['userType']!=3){
+				$data['aAppName']=$this->input->post('aAppName');
 			}
 			//update or insert
 			if ($checkdataexist) {
